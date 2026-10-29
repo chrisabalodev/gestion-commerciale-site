@@ -13,7 +13,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
 <style>
 :root {
   --bg: #f7f3ee;
@@ -49,9 +50,11 @@ body {
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
-h1, h2, h3 { margin: 0; line-height: 1.12; letter-spacing: -0.025em; }
-h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); font-weight: 800; }
-h3 { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.01em; }
+h1, h2, h3 { margin: 0; line-height: 1.08; letter-spacing: -0.03em; font-family: "Bricolage Grotesque", "Plus Jakarta Sans", system-ui, sans-serif; }
+h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; }
+h3 { font-size: 1.14rem; font-weight: 700; letter-spacing: -0.015em; }
+.serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+h2 .serif { font-size: 1.12em; color: var(--accent); }
 p { margin: 0; }
 .wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .section { padding: 110px 0; }
@@ -109,7 +112,8 @@ a.chip:hover { transform: translateY(-1px); }
 .hero::before { width: 620px; height: 620px; background: radial-gradient(circle, rgba(240,138,82,.42), transparent 65%); top: -160px; right: -120px; }
 .hero::after { width: 520px; height: 520px; background: radial-gradient(circle, rgba(109,74,216,.16), transparent 65%); top: 120px; left: -220px; }
 .hero-copy { text-align: center; max-width: 880px; margin: 0 auto; }
-.hero h1 { font-size: clamp(2.5rem, 6.4vw, 4.8rem); font-weight: 800; margin: 24px 0; letter-spacing: -0.035em; }
+.hero h1 { font-size: clamp(2.8rem, 7.2vw, 5.6rem); font-weight: 800; margin: 26px 0; letter-spacing: -0.045em; line-height: 1; }
+.hero h1 .serif { font-weight: 400; letter-spacing: -0.02em; font-size: 1.1em; padding-right: .06em; }
 .grad { background: linear-gradient(100deg, var(--accent-2), var(--accent) 45%, #b8401a); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero .lead { max-width: 640px; margin: 0 auto; font-size: 1.15rem; }
 .hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 36px; }
@@ -135,6 +139,51 @@ a.chip:hover { transform: translateY(-1px); }
 .pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 56px; }
 .pill { display: inline-flex; align-items: center; gap: 9px; padding: 10px 18px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: .9rem; font-weight: 600; color: var(--ink-2); }
 .pill svg { width: 17px; height: 17px; color: var(--accent); }
+
+/* Éléments volants du héros */
+.sky { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.fly { position: absolute; transform: translate(calc(var(--px, 0) * var(--d) * 1px), calc(var(--py, 0) * var(--d) * 1px)); transition: transform .4s ease-out; }
+.fly > * { animation: drift var(--t, 9s) ease-in-out infinite; animation-delay: var(--w, 0s); }
+.tile { width: 64px; height: 64px; border-radius: 22px; display: grid; place-items: center; background: rgba(255,255,255,.85); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.tile svg { width: 28px; height: 28px; }
+.tile.o { color: var(--accent); }
+.tile.v { color: var(--violet); }
+.tile.g { color: var(--green); }
+.tile.dk { background: var(--ink); color: #fff; border-color: var(--ink); }
+.tile.sm { width: 48px; height: 48px; border-radius: 16px; }
+.tile.sm svg { width: 21px; height: 21px; }
+.orb { width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-2), var(--accent)); box-shadow: 0 8px 20px -6px rgba(210,88,42,.8); }
+.orb.v { background: linear-gradient(135deg, #a58cff, var(--violet)); box-shadow: 0 8px 20px -6px rgba(109,74,216,.7); }
+.orb.lg { width: 30px; height: 30px; }
+.ring { width: 120px; height: 120px; border-radius: 50%; border: 14px solid rgba(210,88,42,.12); }
+.coin { padding: 8px 14px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 700; font-size: .85rem; font-family: "Bricolage Grotesque", sans-serif; box-shadow: var(--shadow); white-space: nowrap; }
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(var(--r, 0deg)); }
+  33% { transform: translate(6px, -14px) rotate(calc(var(--r, 0deg) + 6deg)); }
+  66% { transform: translate(-8px, 8px) rotate(calc(var(--r, 0deg) - 4deg)); }
+}
+
+/* Cartes flottantes supplémentaires sur la capture */
+.float-3 { right: 7%; top: -34px; animation-delay: -1.5s; }
+.float-3 i { background: var(--violet-soft); color: var(--violet); }
+.float-4 { left: 9%; bottom: -30px; animation-delay: -4.5s; }
+.float-4 i { background: #fff4d6; color: #b57a00; }
+.float b { font-family: "Bricolage Grotesque", sans-serif; font-size: 1.05rem; letter-spacing: -0.02em; }
+
+/* Bandeau défilant */
+.marquee { margin-top: 64px; display: grid; gap: 12px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.track { display: flex; gap: 12px; width: max-content; animation: slide 40s linear infinite; }
+.track.rev { animation-direction: reverse; animation-duration: 46s; }
+.marquee:hover .track { animation-play-state: paused; }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+/* Apparition au défilement */
+.js .reveal { opacity: 0; transform: translateY(28px) scale(.98); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--delay, 0s); }
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* Éléments volants des sections sombres */
+.deco { position: absolute; pointer-events: none; z-index: 0; }
+.deco > * { animation: drift var(--t, 10s) ease-in-out infinite; animation-delay: var(--w, 0s); }
 
 /* Éditions */
 .editions { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -270,7 +319,18 @@ a.chip:hover { transform: translateY(-1px); }
 footer { padding: 40px 0 48px; }
 footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; color: var(--muted); font-size: .9rem; }
 
+.network h2 .serif { color: var(--accent-2); }
+.contact h2 .serif { color: #fff; }
+.contact h2 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); }
+.rel-ver, .brand, .steps li::before, .ver summary b { font-family: "Bricolage Grotesque", "Plus Jakarta Sans", sans-serif; }
+.rel-ver { font-size: 3.2rem; font-weight: 800; }
+
+@media (max-width: 1240px) {
+  .fly.far { display: none; }
+}
 @media (max-width: 1040px) {
+  .float-3, .float-4 { display: none; }
+  .fly.mid { display: none; }
   .bento { grid-template-columns: repeat(2, 1fr); }
   .versions, .network, .contact { grid-template-columns: 1fr; }
   .network, .contact { padding: 52px; gap: 40px; }
@@ -307,8 +367,9 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .float { animation: none; }
-  .btn, .card, .ci { transition: none; }
+  .float, .fly > *, .deco > *, .track { animation: none; }
+  .btn, .card, .ci, .fly { transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
 }
 </style>
 </head>
@@ -331,11 +392,21 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
   </div>
 </header>
 
-<section class="hero">
+<section class="hero" id="hero">
+  <div class="sky" aria-hidden="true">
+    <div class="fly far" style="--d:-18;left:6%;top:190px"><div class="tile o" style="--t:9s;--r:-8deg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></div></div>
+    <div class="fly far" style="--d:14;right:7%;top:210px"><div class="tile v" style="--t:11s;--w:-2s;--r:9deg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg></div></div>
+    <div class="fly mid" style="--d:24;left:13%;top:420px"><div class="coin" style="--t:8s;--w:-3s;--r:-5deg">+ 50 000 F</div></div>
+    <div class="fly mid" style="--d:-22;right:12%;top:440px"><div class="tile sm dk" style="--t:10s;--w:-5s;--r:6deg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="12" cy="12" r="2.5"/></svg></div></div>
+    <div class="fly" style="--d:30;left:22%;top:132px"><div class="orb" style="--t:7s"></div></div>
+    <div class="fly" style="--d:-26;right:24%;top:120px"><div class="orb v lg" style="--t:9s;--w:-4s"></div></div>
+    <div class="fly far" style="--d:10;left:3%;top:560px"><div class="ring" style="--t:14s"></div></div>
+    <div class="fly mid" style="--d:-12;right:4%;top:600px"><div class="tile sm g" style="--t:12s;--w:-6s;--r:-10deg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div></div>
+  </div>
   <div class="wrap">
     <div class="hero-copy">
       <a class="chip" href="#versions"><span class="dot"></span>Nouveau : la version 1.4 en Preview →</a>
-      <h1>Vendez, encaissez, suivez. <span class="grad">Tout au même endroit.</span></h1>
+      <h1>Vendez, encaissez, suivez. <span class="grad">Tout au même <span class="serif">endroit.</span></span></h1>
       <p class="lead">Devis, factures, stock, caisse et impayés, en francs CFA. Sur votre ordinateur, en réseau dans votre magasin ou dans le navigateur, même quand internet est coupé.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#versions">
@@ -362,13 +433,33 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
         <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg></i>
         <span>Relance par WhatsApp<small>Message déjà rédigé</small></span>
       </div>
+      <div class="float float-3">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></i>
+        <span><b>Ventes du jour</b><small>Suivies en direct</small></span>
+      </div>
+      <div class="float float-4">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></svg></i>
+        <span><b>Caisse clôturée</b><small>Écart calculé tout seul</small></span>
+      </div>
     </div>
 
-    <div class="pills">
-      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="3"/><path d="M8 21h8M12 17v4"/></svg>Plusieurs postes en réseau</span>
-      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="12" cy="12" r="2.5"/></svg>Espèces, Mobile Money, virement</span>
-      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>Sauvegarde automatique</span>
-      <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>Factures A4 soignées</span>
+    <div class="marquee" aria-label="Points forts">
+      <div class="track" id="track-1">
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="3"/><path d="M8 21h8M12 17v4"/></svg>Plusieurs postes en réseau</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="12" cy="12" r="2.5"/></svg>Espèces, Mobile Money, virement</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>Sauvegarde automatique</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>Factures A4 soignées</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/></svg>Stock automatique</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fonctionne sans internet</span>
+      </div>
+      <div class="track rev" id="track-2">
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/></svg>Relances WhatsApp</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/></svg>Clôture de caisse</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"/></svg>Import Excel</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/></svg>Droits des vendeurs</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>États financiers</span>
+        <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Devis, factures, avoirs</span>
+      </div>
     </div>
   </div>
 </section>
@@ -377,7 +468,7 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
   <div class="wrap">
     <div class="head center">
       <span class="chip"><span class="dot"></span>Deux façons de travailler</span>
-      <h2>Un logiciel de bureau et une application web</h2>
+      <h2>Un logiciel de bureau et une <span class="serif">application web</span></h2>
       <p class="lead">Mêmes écrans, mêmes documents, mêmes règles. Choisissez selon votre organisation.</p>
     </div>
     <div class="editions">
@@ -419,7 +510,7 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
   <div class="wrap">
     <div class="head center">
       <span class="chip"><span class="dot"></span>Fonctionnalités</span>
-      <h2>Tout le cycle de vente, du devis à la caisse</h2>
+      <h2>Tout le cycle de vente, du devis à la <span class="serif">caisse</span></h2>
       <p class="lead">Vendre vite, imprimer propre et savoir à tout moment où en est l'argent.</p>
     </div>
     <div class="bento">
@@ -488,7 +579,7 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
   <div class="wrap">
     <div class="head center">
       <span class="chip"><span class="dot"></span>Aperçu</span>
-      <h2>Des écrans clairs, pensés pour aller vite</h2>
+      <h2>Des écrans clairs, pensés pour aller <span class="serif">vite</span></h2>
     </div>
     <div class="tabs" role="tablist" aria-label="Captures d'écran">
       <button class="tab" role="tab" aria-selected="true" aria-controls="p-new" id="t-new">Nouvelle facture</button>
@@ -518,7 +609,7 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
   <div class="wrap">
     <div class="head center">
       <span class="chip"><span class="dot"></span>Téléchargements</span>
-      <h2>Versions du logiciel de bureau</h2>
+      <h2>Versions du logiciel de <span class="serif">bureau</span></h2>
       <p class="lead">La stable pour travailler au quotidien, la Preview pour découvrir les nouveautés en avance.</p>
     </div>
 
@@ -645,9 +736,11 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
 <section class="section" id="reseau" style="padding-top:0">
   <div class="wrap">
     <div class="network">
+      <div class="deco" aria-hidden="true" style="right:46%;top:40px"><div class="orb" style="--t:8s"></div></div>
+      <div class="deco" aria-hidden="true" style="right:40px;bottom:36px"><div class="orb v lg" style="--t:10s;--w:-3s"></div></div>
       <div>
         <span class="chip"><span class="dot"></span>Plusieurs postes, une seule base</span>
-        <h2>En réseau local, sans internet</h2>
+        <h2>En réseau local, <span class="serif">sans internet</span></h2>
         <p class="lead">Un ordinateur sert de serveur ; les caisses et les bureaux s'y connectent par le câble ou le Wi-Fi du magasin. Tout le monde voit les mêmes clients, le même stock et les mêmes numéros.</p>
         <ol class="steps">
           <li><div><strong>Le poste serveur garde les données</strong><span>Il enregistre tout et fait la sauvegarde automatique.</span></div></li>
@@ -680,7 +773,7 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
   <div class="wrap">
     <div class="head center">
       <span class="chip"><span class="dot"></span>Questions fréquentes</span>
-      <h2>Avant d'installer</h2>
+      <h2>Avant d'<span class="serif">installer</span></h2>
     </div>
     <div class="faq">
       <details>
@@ -706,8 +799,10 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
 <section class="section" id="contact" style="padding-top:0">
   <div class="wrap">
     <div class="contact">
+      <div class="deco" aria-hidden="true" style="left:44%;top:34px"><div class="tile sm" style="--t:9s;--r:-10deg;color:var(--accent)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg></div></div>
+      <div class="deco" aria-hidden="true" style="left:-24px;bottom:-34px"><div class="ring" style="--t:13s;border-color:rgba(255,255,255,.16);width:90px;height:90px"></div></div>
       <div>
-        <h2>Voyons ensemble si c'est fait pour vous</h2>
+        <h2>Voyons ensemble si c'est <span class="serif">fait pour vous</span></h2>
         <p class="lead">Démonstration, installation dans votre magasin, formation de vos vendeurs, licence : écrivez-nous ou appelez-nous.</p>
       </div>
       <div class="contact-list">
@@ -745,6 +840,47 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
   links.addEventListener("click", (e) => {
     if (e.target.closest("a")) { links.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }
   });
+
+  const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Bandeau défilant : contenu doublé pour une boucle sans à-coup.
+  document.querySelectorAll(".track").forEach((track) => {
+    [...track.children].forEach((el) => {
+      const copie = el.cloneNode(true);
+      copie.setAttribute("aria-hidden", "true");
+      track.appendChild(copie);
+    });
+  });
+
+  // Éléments volants : léger effet de profondeur qui suit la souris.
+  const hero = document.getElementById("hero");
+  if (!calme && matchMedia("(pointer: fine)").matches) {
+    window.addEventListener("pointermove", (e) => {
+      hero.style.setProperty("--px", ((e.clientX / innerWidth) - 0.5).toFixed(3));
+      hero.style.setProperty("--py", ((e.clientY / innerHeight) - 0.5).toFixed(3));
+    }, { passive: true });
+  }
+
+  // Apparition des blocs au défilement.
+  const blocs = document.querySelectorAll(".head, .edition, .card, .release, .history, .network, .faq details, .contact, .tabs, #apercu .screen");
+  if ("IntersectionObserver" in window && !calme) {
+    const vus = new IntersectionObserver((entrees) => {
+      entrees.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); vus.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    blocs.forEach((el) => {
+      const freres = [...el.parentElement.children].filter((c) => c.matches(".card, .edition, .release, .faq details"));
+      el.style.setProperty("--delay", `${Math.max(0, Math.min(freres.indexOf(el), 5)) * 0.07}s`);
+      el.classList.add("reveal");
+      // Une fois apparu, le bloc retrouve ses effets de survol habituels.
+      el.addEventListener("transitionend", function fin(ev) {
+        if (ev.target !== el || !el.classList.contains("in")) return;
+        el.classList.remove("reveal", "in");
+        el.style.removeProperty("--delay");
+        el.removeEventListener("transitionend", fin);
+      });
+      vus.observe(el);
+    });
+  }
 
   const tabs = [...document.querySelectorAll(".tab")];
   const caption = document.getElementById("caption");
