@@ -10,10 +10,10 @@
 <meta property="og:image" content="https://chrisabalodev.github.io/gestion-commerciale-site/images/tableau-de-bord.png">
 <meta name="theme-color" content="#fbf7f2">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add("js");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-<script>document.documentElement.classList.add("js");</script>
 <style>
 :root {
   --cream: #fbf7f2;
@@ -397,6 +397,127 @@ section { padding: 120px 0; position: relative; }
   .offer { transition: none; }
 }
 
+/* Comment ça marche : parcours interactif */
+.how { display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: center; border-radius: 44px; padding: 40px; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.9), var(--soft); }
+.how-steps { display: grid; gap: 10px; }
+.hs { font: inherit; color: inherit; text-align: left; cursor: pointer; border: 0; background: transparent; display: grid; grid-template-columns: 58px 1fr; gap: 16px; align-items: start; padding: 22px; border-radius: 26px; position: relative; overflow: hidden; transition: background .3s, box-shadow .3s; }
+.hs:hover { background: rgba(255,255,255,.55); }
+.hs.on { background: #fff; box-shadow: var(--soft-lg); }
+.hs-n { font-family: "Instrument Serif", serif; font-style: italic; font-size: 2.6rem; line-height: 1; color: #d9cec4; transition: color .3s; }
+.hs.on .hs-n { color: var(--coral); }
+.hs-t b { display: block; font-size: 1.18rem; letter-spacing: -0.02em; }
+.hs-t small { display: block; margin-top: 4px; color: var(--ink-2); font-size: .95rem; line-height: 1.5; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .45s ease, opacity .35s ease; }
+.hs.on .hs-t small { max-height: 90px; opacity: 1; }
+.hs-bar { position: absolute; left: 22px; right: 22px; bottom: 10px; height: 3px; border-radius: 3px; background: transparent; overflow: hidden; }
+.hs.on .hs-bar { background: #f1e9e1; }
+.hs-bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--coral-2), var(--coral)); }
+.hs.on .hs-bar i { width: var(--p, 0%); }
+
+.how-stage { position: relative; min-height: 440px; display: grid; place-items: center; border-radius: 34px; background: linear-gradient(150deg, #ffeee4, #efe7ff 60%, #e3f1fb); overflow: hidden; padding: 34px; isolation: isolate; }
+.hs-blob { position: absolute; z-index: -1; width: 340px; height: 340px; border-radius: 50%; background: rgba(255,255,255,.65); filter: blur(40px); top: -90px; right: -60px; animation: morph 16s ease-in-out infinite; }
+.hp { width: 100%; max-width: 430px; position: relative; }
+.hp[hidden] { display: none; }
+.hp.on .win { animation: rise .6s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: none; } }
+
+.win { background: #fff; border-radius: 22px; box-shadow: 0 2px 4px rgba(36,31,27,.04), 0 36px 70px -32px rgba(36,31,27,.45); overflow: hidden; font-size: .84rem; }
+.win-bar { display: flex; align-items: center; gap: 6px; padding: 12px 16px; background: var(--cream-2); }
+.win-bar i { width: 10px; height: 10px; border-radius: 50%; background: #e2d7cc; }
+.win-bar i:first-child { background: #f2a38a; }
+.win-bar span { margin-left: 8px; color: var(--muted); font-size: .76rem; font-weight: 600; }
+.win-body { padding: 18px; }
+.win-q { font-weight: 700; margin-bottom: 12px; }
+.modes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mode { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; padding: 10px; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--line); }
+.mode b { display: block; font-size: .82rem; }
+.mode small { color: var(--muted); font-size: .7rem; }
+.m-ic { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: var(--cream-2); color: var(--ink-2); }
+.m-ic svg { width: 17px; height: 17px; }
+.mode.sel { box-shadow: inset 0 0 0 2px var(--coral); background: #fff8f4; }
+.mode.sel .m-ic { background: var(--peach); color: var(--coral); }
+.m-ok { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; background: var(--coral); color: #fff; font-size: .7rem; font-weight: 800; }
+.hp.on .mode.sel { animation: pick .5s .5s both; }
+@keyframes pick { from { box-shadow: inset 0 0 0 1px var(--line); background: #fff; } to { box-shadow: inset 0 0 0 2px var(--coral); background: #fff8f4; } }
+.win-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; }
+.prog { flex: 1; height: 6px; border-radius: 6px; background: #f1e9e1; overflow: hidden; }
+.prog i { display: block; height: 100%; width: 100%; border-radius: inherit; background: linear-gradient(90deg, #8fd3b2, var(--mint-ink)); transform-origin: 0 50%; }
+.hp.on .prog i { animation: fill 2.2s .3s cubic-bezier(.4,0,.2,1) both; }
+@keyframes fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.fake-btn { padding: 9px 16px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 700; font-size: .8rem; white-space: nowrap; }
+.fake-btn.ghost { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+.fake-btn.coral { background: linear-gradient(135deg, var(--coral-2), var(--coral)); }
+
+.field { margin-bottom: 12px; }
+.field label { display: block; font-size: .7rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 5px; }
+.field.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.inp { padding: 10px 12px; border-radius: 12px; box-shadow: inset 0 0 0 1px var(--line); background: var(--cream); font-weight: 600; position: relative; }
+.caret { display: inline-block; width: 2px; height: 14px; margin-left: 2px; vertical-align: -2px; background: var(--coral); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips span { padding: 6px 11px; border-radius: 999px; background: var(--mint); color: var(--mint-ink); font-weight: 700; font-size: .76rem; }
+.chips .add { background: #fff; color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line); }
+.hp.on .chips span { animation: pop .4s cubic-bezier(.2,1.4,.4,1) both; }
+.hp.on .chips span:nth-child(2) { animation-delay: .15s; }
+.hp.on .chips span:nth-child(3) { animation-delay: .3s; }
+.hp.on .chips span:nth-child(4) { animation-delay: .45s; }
+@keyframes pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+.sellers { display: flex; align-items: center; }
+.av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-size: .72rem; font-weight: 800; color: #fff; box-shadow: 0 0 0 3px #fff; }
+.av + .av { margin-left: -8px; }
+.a1 { background: var(--coral); }
+.a2 { background: var(--lilac-ink); }
+.a3 { background: var(--mint-ink); }
+.av.plus { background: var(--cream-2); color: var(--ink-2); }
+.sellers small { margin-left: 12px; color: var(--muted); }
+
+.sale-row { display: grid; grid-template-columns: 1fr 44px 80px; gap: 10px; padding: 9px 0; border-bottom: 1px solid #f3ede7; color: var(--ink-2); }
+.sale-row span:nth-child(2), .sale-row span:nth-child(3) { text-align: right; }
+.sale-row span:nth-child(3) { color: var(--ink); font-weight: 600; }
+.sale-row.sh { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); padding-top: 0; }
+.sale-row.sh span { color: var(--muted) !important; font-weight: 700 !important; }
+.hp.on .sale-row.l1 { animation: slidein .5s .2s both; }
+.hp.on .sale-row.l2 { animation: slidein .5s .5s both; }
+@keyframes slidein { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
+.sale-tot { margin-top: 12px; display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border-radius: 12px; background: var(--ink); color: #fff; }
+.sale-tot b { font-size: 1.1rem; }
+
+.pop { position: absolute; display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px 10px 10px; border-radius: 999px; background: rgba(255,255,255,.95); box-shadow: var(--soft-lg); font-weight: 700; font-size: .86rem; white-space: nowrap; }
+.pop-ic { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: .8rem; font-weight: 800; }
+.pop-ic.mint { background: var(--mint); color: var(--mint-ink); }
+.pop-ic.lilac { background: var(--lilac); color: var(--lilac-ink); }
+.pop-ic.sky { background: var(--sky); color: var(--sky-ink); }
+.p-a { right: -18px; bottom: -22px; }
+.p-b { left: -22px; bottom: -20px; }
+.p-c { right: -24px; top: -20px; }
+.p-d { left: -20px; bottom: -22px; }
+.hp.on .pop { animation: pop .5s 1.1s cubic-bezier(.2,1.4,.4,1) both; }
+.hp.on .p-d { animation-delay: 1.6s; }
+
+@media (max-width: 1080px) {
+  .how { grid-template-columns: 1fr; padding: 24px; }
+  .how-steps { grid-template-columns: repeat(3, 1fr); }
+  .hs { grid-template-columns: 1fr; gap: 6px; padding: 18px; }
+  .hs-t small { display: none; }
+}
+@media (max-width: 720px) {
+  .how { padding: 14px; border-radius: 30px; gap: 16px; }
+  .how-steps { gap: 6px; }
+  .hs { padding: 14px 10px 16px; border-radius: 20px; text-align: center; }
+  .hs-n { font-size: 1.9rem; }
+  .hs-t b { font-size: 1rem; }
+  .hs-bar { left: 12px; right: 12px; bottom: 7px; }
+  .how-stage { min-height: 0; padding: 22px 14px 40px; border-radius: 24px; }
+  .modes { grid-template-columns: 1fr; }
+  .pop { font-size: .78rem; }
+  .p-a, .p-d { right: auto; left: 50%; transform: translateX(-50%); bottom: -30px; }
+  .p-b { left: 50%; transform: translateX(-50%); bottom: -30px; }
+  .p-c { display: none; }
+  .hp.on .pop { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp.on .win, .hp.on .mode.sel, .hp.on .prog i, .hp.on .chips span, .hp.on .sale-row, .hp.on .pop, .caret, .hs-blob { animation: none; }
+}
+
 .js .rv { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0s); }
 .js .rv.on { opacity: 1; transform: none; }
 
@@ -654,11 +775,81 @@ section { padding: 120px 0; position: relative; }
     <div class="head rv">
       <span class="kicker plain">Comment ça marche</span>
       <h2>Prêt à vendre <span class="it">en trois étapes.</span></h2>
+      <p>Pas besoin d'être informaticien : l'installation vous guide, et vous vendez dès la première journée.</p>
     </div>
-    <div class="steps">
-      <article class="step rv"><h3>Installez</h3><p>Téléchargez l'installateur, choisissez poste unique ou réseau.</p></article>
-      <article class="step rv"><h3>Configurez</h3><p>Votre société, vos modes de paiement et un code par vendeur.</p></article>
-      <article class="step rv"><h3>Vendez</h3><p>Facturez, encaissez, imprimez : le reste se met à jour tout seul.</p></article>
+
+    <div class="how rv">
+      <div class="how-steps" role="tablist" aria-label="Étapes">
+        <button class="hs on" role="tab" aria-selected="true" aria-controls="hp-1" id="hs-1" data-i="0">
+          <span class="hs-n">01</span>
+          <span class="hs-t"><b>Installez</b><small>Lancez l'installateur et choisissez votre mode : un seul poste, ou plusieurs postes en réseau.</small></span>
+          <span class="hs-bar" aria-hidden="true"><i></i></span>
+        </button>
+        <button class="hs" role="tab" aria-selected="false" aria-controls="hp-2" id="hs-2" data-i="1" tabindex="-1">
+          <span class="hs-n">02</span>
+          <span class="hs-t"><b>Configurez</b><small>Votre société, vos modes de paiement et un code pour chaque vendeur.</small></span>
+          <span class="hs-bar" aria-hidden="true"><i></i></span>
+        </button>
+        <button class="hs" role="tab" aria-selected="false" aria-controls="hp-3" id="hs-3" data-i="2" tabindex="-1">
+          <span class="hs-n">03</span>
+          <span class="hs-t"><b>Vendez</b><small>Facturez et encaissez : le stock, la caisse et le tableau de bord suivent tout seuls.</small></span>
+          <span class="hs-bar" aria-hidden="true"><i></i></span>
+        </button>
+      </div>
+
+      <div class="how-stage">
+        <div class="hs-blob" aria-hidden="true"></div>
+
+        <!-- 1. Installation -->
+        <div class="hp on" role="tabpanel" id="hp-1" aria-labelledby="hs-1">
+          <div class="win">
+            <div class="win-bar"><i></i><i></i><i></i><span>Gestion Commerciale · Premier lancement</span></div>
+            <div class="win-body">
+              <p class="win-q">Comment utilisez-vous ce poste ?</p>
+              <div class="modes">
+                <div class="mode sel"><span class="m-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="3"/><path d="M8 21h8M12 17v4"/></svg></span><span><b>Poste unique</b><small>Recommandé</small></span><span class="m-ok">✓</span></div>
+                <div class="mode"><span class="m-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg></span><span><b>Serveur réseau</b><small>Le poste principal</small></span></div>
+                <div class="mode"><span class="m-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/></svg></span><span><b>Poste client</b><small>Se connecte au serveur</small></span></div>
+                <div class="mode"><span class="m-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5M3 12a9 3 0 0 0 18 0"/></svg></span><span><b>PostgreSQL</b><small>Serveur existant</small></span></div>
+              </div>
+              <div class="win-foot"><span class="prog"><i></i></span><span class="fake-btn">Démarrer →</span></div>
+            </div>
+          </div>
+          <div class="pop p-a"><span class="pop-ic mint">✓</span>Installé en quelques clics</div>
+        </div>
+
+        <!-- 2. Configuration -->
+        <div class="hp" role="tabpanel" id="hp-2" aria-labelledby="hs-2" hidden>
+          <div class="win">
+            <div class="win-bar"><i></i><i></i><i></i><span>Paramètres · Ma société</span></div>
+            <div class="win-body">
+              <div class="field"><label>Nom de la société</label><div class="inp">DÉMO DISTRIBUTION<span class="caret"></span></div></div>
+              <div class="field two"><div><label>Téléphone</label><div class="inp">+228 22 00 00 00</div></div><div><label>Ville</label><div class="inp">Lomé</div></div></div>
+              <div class="field"><label>Modes de paiement</label><div class="chips"><span>Espèces</span><span>Mobile Money</span><span>Virement</span><span class="add">+ Ajouter</span></div></div>
+              <div class="field"><label>Vendeurs</label>
+                <div class="sellers"><span class="av a1">AK</span><span class="av a2">KM</span><span class="av a3">YD</span><span class="av plus">+</span><small>Chacun avec son code</small></div>
+              </div>
+            </div>
+          </div>
+          <div class="pop p-b"><span class="pop-ic lilac">⚙</span>Droits réglés par vendeur</div>
+        </div>
+
+        <!-- 3. Vente -->
+        <div class="hp" role="tabpanel" id="hp-3" aria-labelledby="hs-3" hidden>
+          <div class="win">
+            <div class="win-bar"><i></i><i></i><i></i><span>Nouvelle facture</span></div>
+            <div class="win-body">
+              <div class="sale-row sh"><span>Article</span><span>Qté</span><span>Montant</span></div>
+              <div class="sale-row l1"><span>Ciment CPJ 45 (sac)</span><span>40</span><span>200 000</span></div>
+              <div class="sale-row l2"><span>Réglette LED 18 W</span><span>12</span><span>90 000</span></div>
+              <div class="sale-tot"><span>Net à payer</span><b>342 200 F</b></div>
+              <div class="win-foot"><span class="fake-btn ghost">Enregistrer</span><span class="fake-btn coral">Encaisser</span></div>
+            </div>
+          </div>
+          <div class="pop p-c"><span class="pop-ic sky">↓</span>Stock mis à jour</div>
+          <div class="pop p-d"><span class="pop-ic mint">✓</span>Facture payée · caisse à jour</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -982,7 +1173,56 @@ section { padding: 120px 0; position: relative; }
       item.hidden = visibles === 0;
       if (k !== "tout" && visibles) item.querySelector("details").open = true;
     });
-  }));  const blocs = document.querySelectorAll(".rv");
+  }));  // Parcours « Comment ça marche » : étapes qui avancent seules.
+  (() => {
+    const etapes = [...document.querySelectorAll(".hs")];
+    const panneaux = etapes.map((b) => document.getElementById(b.getAttribute("aria-controls")));
+    const zone = document.querySelector(".how");
+    const DUREE = 6000;
+    let actuelle = 0, debut = 0, pause = false, visible = false, raf = 0;
+    function montrer(n, focus) {
+      actuelle = (n + etapes.length) % etapes.length;
+      etapes.forEach((b, i) => {
+        const on = i === actuelle;
+        b.classList.toggle("on", on);
+        b.setAttribute("aria-selected", String(on));
+        b.tabIndex = on ? 0 : -1;
+        b.style.setProperty("--p", "0%");
+        panneaux[i].hidden = !on;
+        panneaux[i].classList.toggle("on", on);
+      });
+      if (focus) etapes[actuelle].focus();
+      debut = performance.now();
+    }
+    function tic(t) {
+      if (!pause && visible) {
+        const k = Math.min(1, (t - debut) / DUREE);
+        etapes[actuelle].style.setProperty("--p", `${(k * 100).toFixed(1)}%`);
+        if (k >= 1) montrer(actuelle + 1);
+      } else {
+        debut = t - (parseFloat(etapes[actuelle].style.getPropertyValue("--p")) || 0) / 100 * DUREE;
+      }
+      raf = requestAnimationFrame(tic);
+    }
+    etapes.forEach((b, i) => {
+      b.addEventListener("click", () => { montrer(i); });
+      b.addEventListener("keydown", (e) => {
+        const d = ["ArrowDown", "ArrowRight"].includes(e.key) ? 1 : ["ArrowUp", "ArrowLeft"].includes(e.key) ? -1 : 0;
+        if (d) { e.preventDefault(); montrer(actuelle + d, true); }
+      });
+    });
+    zone.addEventListener("pointerenter", () => { pause = true; });
+    zone.addEventListener("pointerleave", () => { pause = false; });
+    zone.addEventListener("focusin", () => { pause = true; });
+    zone.addEventListener("focusout", () => { pause = false; });
+    montrer(0);
+    if (calme) return;
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((en) => { visible = en[0].isIntersecting; if (visible) debut = performance.now(); }, { threshold: 0.35 }).observe(zone);
+    } else { visible = true; }
+    raf = requestAnimationFrame(tic);
+  })();
+  const blocs = document.querySelectorAll(".rv");
   if ("IntersectionObserver" in window && !calme) {
     const vus = new IntersectionObserver((entrees) => {
       entrees.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("on"); vus.unobserve(en.target); } });
