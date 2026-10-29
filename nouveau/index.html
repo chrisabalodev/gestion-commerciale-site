@@ -518,6 +518,108 @@ section { padding: 120px 0; position: relative; }
   .hp.on .win, .hp.on .mode.sel, .hp.on .prog i, .hp.on .chips span, .hp.on .sale-row, .hp.on .pop, .caret, .hs-blob { animation: none; }
 }
 
+/* Bureau et web : rangées illustrées */
+.row2 { display: grid; grid-template-columns: 1fr 1.08fr; gap: 64px; align-items: center; }
+.row2 + .row2 { margin-top: 120px; }
+.flip2 .r-txt { order: 2; }
+.row2 h2 { font-size: clamp(2rem, 3.8vw, 3rem); margin-top: 18px; }
+.r-lead { margin-top: 16px; color: var(--ink-2); font-size: 1.08rem; max-width: 500px; }
+.feats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+.feat { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: start; padding: 16px; border-radius: 22px; background: rgba(255,255,255,.75); box-shadow: inset 0 0 0 1px rgba(255,255,255,.9), var(--soft); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.feat:hover { transform: translateY(-3px); }
+.fi { width: 40px; height: 40px; border-radius: 14px; display: grid; place-items: center; }
+.fi svg { width: 19px; height: 19px; }
+.fi.peach { background: var(--peach); color: var(--coral); }
+.fi.mint { background: var(--mint); color: var(--mint-ink); }
+.fi.lilac { background: var(--lilac); color: var(--lilac-ink); }
+.fi.sky { background: var(--sky); color: var(--sky-ink); }
+.feat b { display: block; font-size: .95rem; letter-spacing: -0.01em; }
+.feat small { display: block; margin-top: 2px; color: var(--ink-2); font-size: .84rem; line-height: 1.45; }
+.r-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; font-weight: 700; text-decoration: none; color: var(--ink); padding-bottom: 3px; border-bottom: 2px solid var(--peach); transition: border-color .2s, gap .2s; }
+.r-link:hover { border-color: var(--coral); gap: 12px; }
+.r-link span { color: var(--coral); }
+
+.live { width: 8px; height: 8px; border-radius: 50%; background: #2fbf71; display: inline-block; box-shadow: 0 0 0 0 rgba(47,191,113,.6); animation: livep 2s infinite; flex: none; }
+@keyframes livep { 0% { box-shadow: 0 0 0 0 rgba(47,191,113,.55); } 70% { box-shadow: 0 0 0 7px rgba(47,191,113,0); } 100% { box-shadow: 0 0 0 0 rgba(47,191,113,0); } }
+
+/* Schéma du réseau local */
+.lan { position: relative; height: 530px; border-radius: 40px; background: linear-gradient(150deg, #fff1e8, #ffd8c4); overflow: hidden; isolation: isolate; box-shadow: var(--soft); }
+.lan::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(rgba(226,104,59,.18) 1.2px, transparent 1.3px); background-size: 22px 22px; -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 80%); mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 80%); }
+.lan-tag { position: absolute; top: 22px; left: 22px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.8); font-size: .78rem; font-weight: 700; color: var(--ink-2); }
+.lan-tag svg { width: 15px; height: 15px; color: var(--coral); }
+.nocloud { position: absolute; top: 22px; right: 22px; display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border-radius: 999px; background: rgba(36,31,27,.08); font-size: .78rem; font-weight: 700; color: var(--ink-2); }
+.nocloud svg { width: 15px; height: 15px; }
+.wires { position: absolute; left: 0; top: 30px; width: 100%; height: 400px; overflow: visible; }
+.wires path { fill: none; stroke: rgba(226,104,59,.45); stroke-width: 2; stroke-dasharray: 5 7; animation: flow 1.2s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -24; } }
+.pk { fill: var(--coral); filter: drop-shadow(0 0 4px rgba(226,104,59,.8)); }
+.pk.b { fill: var(--lilac-ink); filter: drop-shadow(0 0 4px rgba(115,87,214,.8)); }
+.srv { position: absolute; left: 50%; top: 92px; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; padding: 16px 20px 16px 16px; border-radius: 24px; background: #fff; box-shadow: var(--soft-lg); white-space: nowrap; z-index: 1; }
+.srv-ic { width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; background: linear-gradient(135deg, var(--coral-2), var(--coral)); color: #fff; position: relative; z-index: 1; }
+.srv-ic svg { width: 23px; height: 23px; }
+.srv-ring { position: absolute; left: 16px; top: 16px; width: 48px; height: 48px; border-radius: 16px; border: 2px solid var(--coral); animation: ring 2.4s ease-out infinite; }
+@keyframes ring { 0% { transform: scale(1); opacity: .6; } 100% { transform: scale(1.6); opacity: 0; } }
+.srv b { display: block; font-size: 1.02rem; }
+.srv small { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: .8rem; }
+.cli { position: absolute; top: 300px; width: 140px; margin-left: -70px; display: grid; justify-items: center; gap: 4px; padding: 16px 12px 14px; border-radius: 22px; background: #fff; box-shadow: var(--soft-lg); text-align: center; z-index: 1; animation: float 7s ease-in-out infinite; }
+.cli b { font-size: .92rem; }
+.cli small { color: var(--muted); font-size: .76rem; }
+.cli-ic { width: 38px; height: 38px; border-radius: 13px; display: grid; place-items: center; background: var(--ink); color: #fff; margin-bottom: 4px; }
+.cli-ic svg { width: 18px; height: 18px; }
+.c-1 { left: 18.3%; }
+.c-2 { left: 50%; animation-delay: -2.3s; }
+.c-3 { left: 81.7%; animation-delay: -4.6s; }
+.usb { position: absolute; left: 50%; bottom: 22px; margin-left: -105px; width: 210px; display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 10px; border-radius: 18px; background: rgba(255,255,255,.92); box-shadow: var(--soft-lg); z-index: 2; animation-delay: -3s; }
+.usb-ic { width: 32px; height: 32px; border-radius: 11px; display: grid; place-items: center; background: var(--lilac); color: var(--lilac-ink); }
+.usb-ic svg { width: 16px; height: 16px; }
+.usb b { display: block; font-size: .84rem; }
+.usb small { color: var(--muted); font-size: .72rem; }
+
+/* Navigateur */
+.web2 { position: relative; padding: 40px 80px 60px 30px; border-radius: 40px; background: linear-gradient(150deg, #f4f0ff, #ddd2ff); box-shadow: var(--soft); isolation: isolate; overflow: hidden; }
+.web2::before { content: ""; position: absolute; z-index: -1; width: 320px; height: 320px; border-radius: 50%; right: -90px; top: -110px; background: rgba(255,255,255,.6); filter: blur(30px); }
+.browser { border-radius: 18px; background: #fff; box-shadow: var(--soft-lg); overflow: hidden; }
+.b-bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: #f6f3ef; }
+.dots3 { display: flex; gap: 5px; }
+.dots3 i { width: 9px; height: 9px; border-radius: 50%; background: #e2d7cc; }
+.dots3 i:first-child { background: #f2a38a; }
+.url { flex: 1; display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 999px; background: #fff; font-size: .74rem; color: var(--ink-2); font-weight: 600; box-shadow: inset 0 0 0 1px var(--line); }
+.url svg { width: 12px; height: 12px; color: var(--mint-ink); }
+.phone-w { position: absolute; right: 24px; bottom: 22px; width: 150px; padding: 5px; border-radius: 28px; background: var(--ink); box-shadow: 0 30px 60px -24px rgba(36,31,27,.6); animation-delay: -2s; }
+.phone-w img { border-radius: 23px; aspect-ratio: 390 / 844; object-fit: cover; object-position: top; }
+.agency { position: absolute; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 16px; background: rgba(255,255,255,.94); box-shadow: var(--soft-lg); }
+.agency b { display: block; font-size: .84rem; }
+.agency small { color: var(--muted); font-size: .72rem; }
+.a-1 { left: 18px; bottom: 18px; animation-delay: -1s; }
+.a-2 { right: 16px; top: 12px; animation-delay: -4s; }
+
+@media (max-width: 1080px) {
+  .row2 { grid-template-columns: 1fr; gap: 40px; }
+  .flip2 .r-txt { order: 0; }
+}
+@media (max-width: 720px) {
+  .row2 + .row2 { margin-top: 84px; }
+  .feats { grid-template-columns: 1fr; }
+  .lan { height: 400px; border-radius: 28px; }
+  .wires { top: 10px; height: 360px; }
+  .srv { top: 70px; padding: 12px 14px 12px 12px; }
+  .srv-ic, .srv-ring { width: 40px; height: 40px; }
+  .srv-ring { left: 12px; top: 12px; }
+  .cli { top: 258px; width: 100px; margin-left: -50px; padding: 12px 8px; }
+  .cli small { display: none; }
+  .usb { display: none; }
+  .nocloud { display: none; }
+  .web2 { padding: 22px 56px 40px 16px; border-radius: 28px; }
+  .phone-w { width: 96px; right: 12px; bottom: 14px; border-radius: 18px; padding: 3px; }
+  .phone-w img { border-radius: 15px; }
+  .a-2 { display: none; }
+  .a-1 { left: 12px; bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wires path, .srv-ring, .cli, .live { animation: none; }
+  .pk { display: none; }
+}
+
 .js .rv { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0s); }
 .js .rv.on { opacity: 1; transform: none; }
 
@@ -727,44 +829,70 @@ section { padding: 120px 0; position: relative; }
 
 <section style="padding-top:0">
   <div class="wrap">
-    <div class="row">
-      <div class="txt rv">
+    <!-- Logiciel de bureau -->
+    <div class="row2">
+      <div class="r-txt rv">
         <span class="kicker plain">Logiciel de bureau</span>
         <h2>Au magasin, <span class="it">même sans internet.</span></h2>
-        <p>Installez-le sur un poste, ou reliez plusieurs caisses à un poste serveur par le réseau du magasin.</p>
-        <ul class="checks">
-          <li>Les mêmes clients, le même stock et les mêmes numéros sur tous les postes</li>
-          <li>Vos données restent sur vos ordinateurs</li>
-          <li>Les mises à jour arrivent par clé USB, et les postes sont prévenus</li>
-        </ul>
-      </div>
-      <div class="media peach rv" aria-hidden="true">
-        <div class="net">
-          <div class="node float"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="3"/><path d="M8 21h8M12 17v4"/></svg></i><span>Poste serveur<small>Garde les données</small></span></div>
-          <div class="wire"></div>
-          <div class="clients">
-            <div class="node"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/></svg></i>Caisse 1</div>
-            <div class="node"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8"/></svg></i>Caisse 2</div>
-            <div class="node"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="3"/><path d="M8 21h8"/></svg></i>Bureau</div>
-          </div>
+        <p class="r-lead">Un poste suffit pour commencer. Quand le magasin grandit, reliez vos caisses à un poste serveur par le câble ou le Wi-Fi.</p>
+        <div class="feats">
+          <div class="feat"><span class="fi peach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M8 3H3v5M21 16v5h-5M3 16v5h5"/><circle cx="12" cy="12" r="3"/></svg></span><div><b>Tout est synchronisé</b><small>Mêmes clients, même stock, mêmes numéros sur chaque poste.</small></div></div>
+          <div class="feat"><span class="fi mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><div><b>Vos données chez vous</b><small>Rien ne part sur internet.</small></div></div>
+          <div class="feat"><span class="fi lilac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v6l-2 3v9a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-9l-2-3V2z"/><path d="M10 6h4"/></svg></span><div><b>Mises à jour par clé USB</b><small>Les autres postes sont prévenus tout seuls.</small></div></div>
+          <div class="feat"><span class="fi sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></span><div><b>Sauvegarde sur le serveur</b><small>Chaque jour, automatiquement.</small></div></div>
         </div>
+        <a class="r-link" href="#versions">Télécharger le logiciel <span>→</span></a>
+      </div>
+
+      <div class="lan rv" aria-hidden="true">
+        <div class="lan-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>Réseau du magasin · hors ligne</div>
+        <svg class="wires" viewBox="0 0 520 400" preserveAspectRatio="none">
+          <path id="w1" d="M260 150 C 260 210, 95 210, 95 268"/>
+          <path id="w2" d="M260 150 L 260 268"/>
+          <path id="w3" d="M260 150 C 260 210, 425 210, 425 268"/>
+          <circle r="4" class="pk"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#w1"/></animateMotion></circle>
+          <circle r="4" class="pk b"><animateMotion dur="2.2s" begin=".8s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#w2"/></animateMotion></circle>
+          <circle r="4" class="pk"><animateMotion dur="3s" begin=".4s" repeatCount="indefinite"><mpath href="#w3"/></animateMotion></circle>
+        </svg>
+        <div class="srv">
+          <span class="srv-ring"></span>
+          <span class="srv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg></span>
+          <span><b>Poste serveur</b><small><i class="live"></i>Base de données · sauvegardée</small></span>
+        </div>
+        <div class="cli c-1"><span class="cli-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8"/></svg></span><b>Caisse 1</b><small>Facture n° 10038</small></div>
+        <div class="cli c-2"><span class="cli-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><circle cx="12" cy="12" r="2.5"/></svg></span><b>Caisse 2</b><small>Encaissé 50 000 F</small></div>
+        <div class="cli c-3"><span class="cli-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span><b>Bureau</b><small>Tableau de bord</small></div>
+        <div class="usb float"><span class="usb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v6l-2 3v9a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-9l-2-3V2z"/><path d="M10 6h4"/></svg></span><span><b>Version 1.4.0</b><small>proposée aux 3 postes</small></span></div>
+        <div class="nocloud"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.7-9h1.8a4.5 4.5 0 0 1 0 9Z"/><path d="m3 3 18 18"/></svg>Aucun cloud</div>
       </div>
     </div>
 
-    <div class="row flip">
-      <div class="txt rv">
+    <!-- Application web -->
+    <div class="row2 flip2">
+      <div class="r-txt rv">
         <span class="kicker plain">Application web</span>
         <h2>Partout, <span class="it">dans le navigateur.</span></h2>
-        <p>Hébergée sur un serveur, elle relie vos agences et vous permet de suivre l'activité à distance.</p>
-        <ul class="checks">
-          <li>Rien à installer sur les postes</li>
-          <li>Plusieurs agences, une seule base</li>
-          <li>Sur ordinateur et tablette, et sur téléphone avec la 1.4</li>
-        </ul>
+        <p class="r-lead">Installée sur votre serveur, elle relie toutes vos agences. Le gérant suit l'activité où qu'il soit.</p>
+        <div class="feats">
+          <div class="feat"><span class="fi peach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg></span><div><b>Rien à installer</b><small>Un navigateur suffit sur chaque poste.</small></div></div>
+          <div class="feat"><span class="fi mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></span><div><b>Plusieurs agences</b><small>Une seule base, des chiffres consolidés.</small></div></div>
+          <div class="feat"><span class="fi lilac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg></span><div><b>Sur tous les écrans</b><small>Ordinateur et tablette ; téléphone avec la 1.4.</small></div></div>
+          <div class="feat"><span class="fi sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span><div><b>Toujours à jour</b><small>La mise à jour se fait une fois, sur le serveur.</small></div></div>
+        </div>
+        <a class="r-link" href="https://wa.me/22871576308?text=Bonjour%2C%20je%20souhaite%20l%27application%20web%20Gestion%20Commerciale." target="_blank" rel="noopener">Demander la mise en place <span>→</span></a>
       </div>
-      <div class="media lilac rv" aria-hidden="true">
-        <div class="lap"><img src="../images/impayes.png" width="1440" height="900" alt=""></div>
-        <div class="phone-mini float"><img src="../images/mobile.png" width="390" height="844" alt=""></div>
+
+      <div class="web2 rv" aria-hidden="true">
+        <div class="browser">
+          <div class="b-bar">
+            <span class="dots3"><i></i><i></i><i></i></span>
+            <span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>gestion.votre-entreprise.tg</span>
+          </div>
+          <img src="../images/impayes.png" width="1440" height="900" alt="">
+        </div>
+        <div class="phone-w float"><img src="../images/mobile.png" width="390" height="844" alt=""></div>
+        <div class="agency a-1 float"><i class="live"></i><span><b>Agence Lomé</b><small>Synchronisée</small></span></div>
+        <div class="agency a-2 float"><i class="live"></i><span><b>Agence Kara</b><small>Synchronisée</small></span></div>
       </div>
     </div>
   </div>
