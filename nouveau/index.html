@@ -59,6 +59,7 @@ section { padding: 120px 0; position: relative; }
 .btn:hover { transform: translateY(-2px); }
 .btn svg { width: 18px; height: 18px; flex: none; }
 .btn-dark { background: var(--ink); color: #fff; box-shadow: 0 14px 30px -14px rgba(36,31,27,.75); }
+.btn-coral { background: linear-gradient(135deg, var(--coral-2), var(--coral)); color: #fff; box-shadow: 0 14px 30px -14px rgba(226,104,59,.9); }
 .btn-light { background: rgba(255,255,255,.8); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line), var(--soft); }
 
 .nav { position: fixed; top: 18px; left: 0; right: 0; z-index: 50; padding: 0 16px; }
@@ -283,6 +284,118 @@ section { padding: 120px 0; position: relative; }
 .foot a { text-decoration: none; }
 .foot a:hover { color: var(--coral); }
 .foot-bottom { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-size: .88rem; }
+
+/* Téléchargements : trois offres */
+.dl3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+.offer { position: relative; border-radius: 36px; padding: 32px; background: rgba(255,255,255,.85); box-shadow: inset 0 0 0 1px #fff, var(--soft-lg); display: flex; flex-direction: column; overflow: hidden; isolation: isolate; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.offer:hover { transform: translateY(-5px); }
+.offer.pre { background: var(--ink); color: #fff; top: -14px; box-shadow: 0 50px 90px -40px rgba(36,31,27,.7); }
+
+.offer.pre::before { content: ""; position: absolute; z-index: -1; width: 380px; height: 380px; right: -170px; top: -180px; border-radius: 50%; background: radial-gradient(circle, rgba(196,175,255,.6), transparent 65%); }
+.offer.pre::after { content: ""; position: absolute; z-index: -1; width: 320px; height: 320px; left: -150px; bottom: -170px; border-radius: 50%; background: radial-gradient(circle, rgba(243,154,111,.45), transparent 65%); }
+.offer.web { background: linear-gradient(165deg, #fff 35%, var(--peach)); }
+.ribbon { position: absolute; top: 22px; right: -38px; transform: rotate(35deg); padding: 6px 44px; background: linear-gradient(135deg, var(--coral-2), var(--coral)); color: #fff; font-size: .72rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; box-shadow: 0 8px 18px -8px rgba(226,104,59,.9); }
+.o-head { display: flex; align-items: center; gap: 12px; }
+.o-ic { width: 46px; height: 46px; border-radius: 16px; display: grid; place-items: center; flex: none; }
+.o-ic svg { width: 22px; height: 22px; }
+.o-ic.st { background: var(--mint); color: var(--mint-ink); }
+.o-ic.pv { background: rgba(196,175,255,.18); color: #d9ccff; }
+.o-ic.wb { background: #fff; color: var(--coral); box-shadow: var(--soft); }
+.badge.web { background: #fff; color: var(--coral); }
+.badge.test-l { background: var(--lilac); color: var(--lilac-ink); }
+.o-ver { font-family: "Instrument Serif", serif; font-size: 4.6rem; line-height: 1; letter-spacing: -0.03em; margin: 26px 0 8px; }
+.o-ver-txt { font-size: 2.7rem; line-height: 1.05; padding: 14px 0 6px; }
+.o-desc { color: var(--ink-2); }
+.pre .o-desc { color: rgba(255,255,255,.72); }
+.o-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.o-meta span { padding: 4px 10px; border-radius: 999px; font-size: .76rem; font-weight: 600; background: var(--cream-2); color: var(--ink-2); }
+.pre .o-meta span { background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
+.web .o-meta span { background: rgba(255,255,255,.75); }
+.o-list { list-style: none; padding: 0; margin: 22px 0 28px; display: grid; gap: 10px; font-size: .94rem; }
+.o-list li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; color: var(--ink-2); }
+.pre .o-list li { color: rgba(255,255,255,.86); }
+.o-list li::before { content: "✓"; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: .72rem; font-weight: 800; background: var(--mint); color: var(--mint-ink); margin-top: 1px; }
+.pre .o-list li::before { background: rgba(196,175,255,.2); color: #d9ccff; }
+.web .o-list li::before { background: #fff; color: var(--coral); }
+.o-actions { margin-top: auto; display: grid; gap: 14px; }
+.o-actions .btn { width: 100%; }
+.pre .btn-light { background: #fff; box-shadow: none; }
+.o-links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 14px; font-size: .84rem; color: var(--muted); }
+.o-links a { text-decoration: none; font-weight: 600; color: var(--ink-2); }
+.o-links a:hover { color: var(--coral); }
+.pre .o-links, .pre .o-links a { color: rgba(255,255,255,.7); }
+.copy { font: inherit; font-size: .84rem; font-weight: 600; background: none; border: 0; padding: 0; cursor: pointer; color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 3px; }
+.pre .copy { color: rgba(255,255,255,.7); }
+.copy.done { color: var(--mint-ink); text-decoration: none; }
+.pre .copy.done { color: #9be3c0; }
+.o-warn { font-size: .8rem; padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,.07); color: rgba(255,255,255,.65); }
+.reqs { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 34px; }
+.reqs span { display: inline-flex; align-items: center; gap: 9px; padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,.7); box-shadow: inset 0 0 0 1px rgba(255,255,255,.9); font-size: .88rem; color: var(--ink-2); }
+.reqs svg { width: 16px; height: 16px; color: var(--coral); }
+
+/* Historique : frise */
+.tl-wrap { margin-top: 90px; border-radius: 40px; padding: 44px; background: rgba(255,255,255,.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,.9), var(--soft); }
+.tl-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 30px; }
+.tl-title { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -0.04em; }
+.tl-head p { margin-top: 6px; color: var(--muted); font-size: .95rem; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; padding: 5px; border-radius: 999px; background: var(--cream-2); }
+.f { font: inherit; font-size: .86rem; font-weight: 600; color: var(--ink-2); background: none; border: 0; padding: 8px 14px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; transition: background .2s, color .2s; }
+.f:hover { background: rgba(255,255,255,.6); }
+.f.on { background: #fff; color: var(--ink); box-shadow: var(--soft); }
+.k { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.k.nouveau { background: var(--lilac-ink); }
+.k.amelioration { background: var(--sky-ink); }
+.k.correction { background: var(--coral); }
+.tl { list-style: none; margin: 0; padding: 0; position: relative; }
+.tl::before { content: ""; position: absolute; left: 11px; top: 26px; bottom: 26px; width: 2px; border-radius: 2px; background: linear-gradient(180deg, var(--lilac-ink), var(--mint-ink) 22%, #e5dcd3 40%); }
+.tl-item { position: relative; }
+.tl-item + .tl-item { margin-top: 8px; }
+.tl-item[hidden] { display: none; }
+.tl summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 24px 70px 1fr auto auto 28px; align-items: center; gap: 14px; padding: 16px 16px 16px 0; border-radius: 20px; }
+.tl summary::-webkit-details-marker { display: none; }
+.tl summary:hover .tl-name { color: var(--coral); }
+.tl-dot { width: 24px; height: 24px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 2px #e5dcd3; position: relative; z-index: 1; }
+.current-pre .tl-dot { box-shadow: inset 0 0 0 7px var(--lilac-ink); }
+.current-st .tl-dot { box-shadow: inset 0 0 0 7px var(--mint-ink); }
+.current-pre .tl-dot::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--lilac-ink); opacity: .35; animation: pulse 2.4s ease-out infinite; }
+@keyframes pulse { 0% { transform: scale(.7); opacity: .5; } 100% { transform: scale(1.5); opacity: 0; } }
+.tl-v { font-family: "Instrument Serif", serif; font-size: 1.7rem; line-height: 1; }
+.tl-name { font-weight: 600; transition: color .2s; }
+.tl-date { color: var(--muted); font-size: .88rem; white-space: nowrap; }
+.tl-chev { width: 28px; height: 28px; border-radius: 50%; background: var(--cream-2); position: relative; transition: transform .25s; }
+.tl-chev::before { content: ""; position: absolute; left: 10px; top: 9px; width: 7px; height: 7px; border-right: 2px solid var(--ink-2); border-bottom: 2px solid var(--ink-2); transform: rotate(45deg); }
+.tl details[open] .tl-chev { transform: rotate(180deg); }
+.ch { list-style: none; margin: 0 0 12px 38px; padding: 18px 22px; display: grid; gap: 10px; border-radius: 22px; background: #fff; box-shadow: 0 10px 30px -22px rgba(36,31,27,.4); }
+.ch li { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: baseline; font-size: .94rem; color: var(--ink-2); }
+.ch li[hidden] { display: none; }
+.ch li::before { font-size: .68rem; font-weight: 800; letter-spacing: .02em; padding: 3px 9px; border-radius: 999px; min-width: 96px; text-align: center; }
+.ch li[data-k="nouveau"]::before { content: "Nouveau"; background: var(--lilac); color: var(--lilac-ink); }
+.ch li[data-k="amelioration"]::before { content: "Amélioration"; background: var(--sky); color: var(--sky-ink); }
+.ch li[data-k="correction"]::before { content: "Correction"; background: var(--peach); color: var(--coral); }
+
+@media (max-width: 1080px) {
+  .dl3 { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+  .offer.pre { top: 0; }
+}
+@media (max-width: 720px) {
+  .offer { padding: 26px; border-radius: 28px; }
+  .o-ver { font-size: 3.8rem; }
+  .tl-wrap { padding: 24px 16px; border-radius: 28px; margin-top: 64px; }
+  .filters { width: 100%; border-radius: 22px; }
+  .f { flex: 1 1 auto; justify-content: center; }
+  .tl summary { grid-template-columns: 24px auto 1fr 28px; gap: 4px 12px; padding-right: 0; }
+  .tl-name { grid-column: 2 / 4; grid-row: 2; font-size: .94rem; }
+  .tl summary .badge { display: none; }
+  .tl-date { grid-column: 3; grid-row: 1; justify-self: end; }
+  .tl-chev { grid-column: 4; grid-row: 1; }
+  .ch { margin-left: 30px; padding: 14px; }
+  .ch li { grid-template-columns: 1fr; gap: 4px; }
+  .ch li::before { justify-self: start; min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .current-pre .tl-dot::after { animation: none; }
+  .offer { transition: none; }
+}
 
 .js .rv { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0s); }
 .js .rv.on { opacity: 1; transform: none; }
@@ -557,53 +670,232 @@ section { padding: 120px 0; position: relative; }
       <h2>Choisissez <span class="it">votre version.</span></h2>
       <p>Gratuit pendant 30 jours. Ensuite, une clé de licence vous est fournie par AB-DIGICOM.</p>
     </div>
-    <div class="plans">
-      <article class="plan rv">
-        <div class="p-top"><span class="badge ok">Stable · recommandée</span><span class="p-date">27 oct. 2026</span></div>
-        <div class="p-ver">1.3.0</div>
-        <p class="p-desc">Pour travailler au quotidien.</p>
-        <ul class="p-list">
+
+    <div class="dl3">
+      <article class="offer rv">
+        <div class="o-head">
+          <span class="o-ic st"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <span class="badge ok">Stable · recommandée</span>
+        </div>
+        <div class="o-ver">1.3.0</div>
+        <p class="o-desc">La version éprouvée, pour travailler au quotidien.</p>
+        <div class="o-meta"><span>Windows 10/11</span><span>64 bits</span><span>135 Mo</span><span>27 oct. 2026</span></div>
+        <ul class="o-list">
           <li>Nouveau design et tableau de bord</li>
-          <li>États financiers, inventaire, stock automatique</li>
+          <li>États financiers et inventaire</li>
           <li>Ticket de caisse, reçu, facture 2 par page</li>
           <li>Relevé client et bon de préparation</li>
-          <li>Sauvegardes renforcées, archives ZIP</li>
         </ul>
-        <a class="btn btn-dark" href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.3.0/GestionCommerciale-Setup-1.3.0.exe">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-          Télécharger la 1.3.0 · 135 Mo
-        </a>
-        <p class="p-hash">SHA-256 d648c39b53961f5147b476a2a377dbaac44f940af30cf6b58d05472d9d3074f7</p>
+        <div class="o-actions">
+          <a class="btn btn-dark" href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.3.0/GestionCommerciale-Setup-1.3.0.exe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+            Télécharger la 1.3.0
+          </a>
+          <div class="o-links">
+            <a href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/tag/v1.3.0" target="_blank" rel="noopener">Notes de version ↗</a>
+            <button class="copy" type="button" data-sha="d648c39b53961f5147b476a2a377dbaac44f940af30cf6b58d05472d9d3074f7">Copier l'empreinte SHA-256</button>
+          </div>
+        </div>
       </article>
-      <article class="plan pre rv">
-        <div class="p-top"><span class="badge test">Preview · en test</span><span class="p-date">29 oct. 2026</span></div>
-        <div class="p-ver">1.4.0</div>
-        <p class="p-desc">Les nouveautés en avant-première. Sauvegardez avant d'installer.</p>
-        <ul class="p-list">
-          <li>Impayés et relances WhatsApp, SMS, e-mail</li>
-          <li>Clôture de caisse et encaissement en un clic</li>
+
+      <article class="offer pre rv">
+        <span class="ribbon">Nouveautés</span>
+        <div class="o-head">
+          <span class="o-ic pv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6 7 18.2l1.9-5.8L4 8.8h6.1z"/></svg></span>
+          <span class="badge test">Preview · en test</span>
+        </div>
+        <div class="o-ver">1.4.0</div>
+        <p class="o-desc">Toutes les nouveautés en avant-première.</p>
+        <div class="o-meta"><span>Windows 10/11</span><span>64 bits</span><span>135 Mo</span><span>29 oct. 2026</span></div>
+        <ul class="o-list">
+          <li>Impayés et relances WhatsApp</li>
+          <li>Clôture de caisse, encaissement en un clic</li>
           <li>Droits par vendeur, import Excel</li>
-          <li>Modules à la carte, articles de service</li>
-          <li>Mises à jour en réseau, affichage téléphone</li>
+          <li>Modules à la carte, mises à jour en réseau</li>
         </ul>
-        <a class="btn btn-light" href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.4.0/GestionCommerciale-Setup-1.4.0.exe">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
-          Télécharger la Preview · 135 Mo
-        </a>
-        <p class="p-hash">SHA-256 f9ce8371cbcaedf4eda55e5ee00b56a88ebc1fe4883f9f39119c04bdd9f4d24e</p>
+        <div class="o-actions">
+          <a class="btn btn-light" href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.4.0/GestionCommerciale-Setup-1.4.0.exe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+            Télécharger la Preview
+          </a>
+          <div class="o-links">
+            <a href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/tag/v1.4.0" target="_blank" rel="noopener">Notes de version ↗</a>
+            <button class="copy" type="button" data-sha="f9ce8371cbcaedf4eda55e5ee00b56a88ebc1fe4883f9f39119c04bdd9f4d24e">Copier l'empreinte SHA-256</button>
+          </div>
+          <p class="o-warn">Version de test : faites une sauvegarde avant de l'installer sur un poste qui contient de vraies données.</p>
+        </div>
+      </article>
+
+      <article class="offer web rv">
+        <div class="o-head">
+          <span class="o-ic wb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg></span>
+          <span class="badge web">Application web</span>
+        </div>
+        <div class="o-ver o-ver-txt">Sur votre serveur</div>
+        <p class="o-desc">Pour plusieurs agences et le suivi à distance.</p>
+        <div class="o-meta"><span>Navigateur</span><span>Ordinateur</span><span>Tablette</span></div>
+        <ul class="o-list">
+          <li>Installée et configurée par AB-DIGICOM</li>
+          <li>Rien à installer sur les postes</li>
+          <li>Une seule base pour toutes les agences</li>
+          <li>Mêmes fonctions que le logiciel de bureau</li>
+        </ul>
+        <div class="o-actions">
+          <a class="btn btn-coral" href="https://wa.me/22871576308?text=Bonjour%2C%20je%20souhaite%20l%27application%20web%20Gestion%20Commerciale." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg>
+            Demander la mise en place
+          </a>
+          <div class="o-links"><span>Réponse rapide par WhatsApp</span></div>
+        </div>
       </article>
     </div>
-    <details class="history rv">
-      <summary>Historique des versions</summary>
-      <div class="h-list">
-        <div class="h-item"><b>1.4.0</b><span>Impayés, caisse, droits des vendeurs, import Excel, modules, réseau, téléphone</span><span>Preview</span></div>
-        <div class="h-item"><b>1.3.0</b><span>Nouveau design, états financiers, stock, ticket de caisse, relevés</span><span>27 oct. 2026</span></div>
-        <div class="h-item"><b>1.2.1</b><span>PDF identique à la facture imprimée, montants sans « ,00 »</span><span>24 oct. 2026</span></div>
-        <div class="h-item"><b>1.2.0</b><span>Nouveau formulaire de document, unités modifiables</span><span>24 oct. 2026</span></div>
-        <div class="h-item"><b>1.1.0</b><span>Sauvegardes en fichiers, historique des modifications</span><span>23 oct. 2026</span></div>
-        <div class="h-item"><b>1.0.0</b><span>Première version de bureau, quatre modes d'installation</span><span>23 oct. 2026</span></div>
+
+    <div class="reqs rv">
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5v7H3zM11.5 4.4 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>Windows 10 ou 11, 64 bits</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>Données conservées à la mise à jour</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>Aucune connexion internet requise</span>
+    </div>
+
+    <!-- Historique -->
+    <div class="tl-wrap rv" id="historique">
+      <div class="tl-head">
+        <div>
+          <h3 class="tl-title">Historique des <span class="it">versions</span></h3>
+          <p>Chaque version reprend les données de la précédente.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filtrer les changements">
+          <button type="button" class="f on" data-f="tout">Tout</button>
+          <button type="button" class="f" data-f="nouveau"><i class="k nouveau"></i>Nouveautés</button>
+          <button type="button" class="f" data-f="amelioration"><i class="k amelioration"></i>Améliorations</button>
+          <button type="button" class="f" data-f="correction"><i class="k correction"></i>Corrections</button>
+        </div>
       </div>
-    </details>
+
+      <ol class="tl">
+        <li class="tl-item current-pre">
+          <details open>
+            <summary>
+              <span class="tl-dot"></span>
+              <span class="tl-v">1.4.0</span>
+              <span class="tl-name">Impayés, caisse et droits des vendeurs</span>
+              <span class="badge test-l">Preview</span>
+              <span class="tl-date">29 oct. 2026</span>
+              <span class="tl-chev" aria-hidden="true"></span>
+            </summary>
+            <ul class="ch">
+              <li data-k="nouveau">Factures impayées et relances par WhatsApp, SMS ou e-mail</li>
+              <li data-k="nouveau">Clôture de caisse par caissier, avec écart et rapport imprimable</li>
+              <li data-k="nouveau">Bouton « Encaisser » : vente comptant en un clic</li>
+              <li data-k="nouveau">Droits par vendeur : remise maximale, prix, annulations, suppressions</li>
+              <li data-k="nouveau">Import des articles depuis Excel ou CSV</li>
+              <li data-k="nouveau">Modules à activer ou désactiver ; articles de service sans stock</li>
+              <li data-k="nouveau">Dupliquer un document</li>
+              <li data-k="nouveau">Mises à jour par le réseau local, sans internet</li>
+              <li data-k="nouveau">Menu Aide : À propos, Aide, Crédits</li>
+              <li data-k="amelioration">« Payé » enregistre automatiquement le règlement</li>
+              <li data-k="amelioration">« Reste à payer » sur la facture A4 ; nouveau bon de préparation</li>
+              <li data-k="amelioration">Affichage adapté aux téléphones</li>
+            </ul>
+          </details>
+        </li>
+        <li class="tl-item current-st">
+          <details>
+            <summary>
+              <span class="tl-dot"></span>
+              <span class="tl-v">1.3.0</span>
+              <span class="tl-name">Nouveau design, stock et impressions</span>
+              <span class="badge ok">Stable</span>
+              <span class="tl-date">27 oct. 2026</span>
+              <span class="tl-chev" aria-hidden="true"></span>
+            </summary>
+            <ul class="ch">
+              <li data-k="nouveau">États financiers et inventaire</li>
+              <li data-k="nouveau">Ticket de caisse 80 mm et 58 mm, reçu de paiement</li>
+              <li data-k="nouveau">Facture deux par page (original et duplicata)</li>
+              <li data-k="nouveau">Relevé de compte client et bon de préparation</li>
+              <li data-k="nouveau">Archives ZIP des sauvegardes</li>
+              <li data-k="amelioration">Nouveau design : barre latérale foncée, tableau de bord, listes</li>
+              <li data-k="amelioration">Stock suivi automatiquement par les documents</li>
+              <li data-k="amelioration">Sauvegardes : alerte, second dossier, bouton « Sauvegarder »</li>
+            </ul>
+          </details>
+        </li>
+        <li class="tl-item">
+          <details>
+            <summary>
+              <span class="tl-dot"></span>
+              <span class="tl-v">1.2.1</span>
+              <span class="tl-name">PDF identique à la facture imprimée</span>
+              <span></span>
+              <span class="tl-date">24 oct. 2026</span>
+              <span class="tl-chev" aria-hidden="true"></span>
+            </summary>
+            <ul class="ch">
+              <li data-k="amelioration">Le PDF reprend la mise en page de l'impression : en-tête, montant en lettres, signatures</li>
+              <li data-k="amelioration">Montants sans « ,00 » ; accents rétablis</li>
+              <li data-k="correction">Montants mal affichés dans le PDF</li>
+              <li data-k="correction">Quantités décimales arrondies à l'impression</li>
+            </ul>
+          </details>
+        </li>
+        <li class="tl-item">
+          <details>
+            <summary>
+              <span class="tl-dot"></span>
+              <span class="tl-v">1.2.0</span>
+              <span class="tl-name">Nouveau formulaire de document</span>
+              <span></span>
+              <span class="tl-date">24 oct. 2026</span>
+              <span class="tl-chev" aria-hidden="true"></span>
+            </summary>
+            <ul class="ch">
+              <li data-k="nouveau">Liste des unités modifiable</li>
+              <li data-k="amelioration">Formulaire « Nouveau document » refait : entête, totaux, lignes</li>
+              <li data-k="amelioration">Factures : référence en couleur, ligne « Remises », totaux du brut au net</li>
+              <li data-k="correction">Unités courantes absentes dans certains cas</li>
+            </ul>
+          </details>
+        </li>
+        <li class="tl-item">
+          <details>
+            <summary>
+              <span class="tl-dot"></span>
+              <span class="tl-v">1.1.0</span>
+              <span class="tl-name">Sauvegardes et historique</span>
+              <span></span>
+              <span class="tl-date">23 oct. 2026</span>
+              <span class="tl-chev" aria-hidden="true"></span>
+            </summary>
+            <ul class="ch">
+              <li data-k="nouveau">Sauvegardes automatiques en fichiers, chaque jour</li>
+              <li data-k="nouveau">Restauration en un clic</li>
+              <li data-k="nouveau">Historique des modifications et journal de l'administrateur</li>
+              <li data-k="amelioration">Chiffre d'affaires avec les avoirs déduits</li>
+              <li data-k="amelioration">Nouveaux écrans de connexion et de démarrage</li>
+            </ul>
+          </details>
+        </li>
+        <li class="tl-item">
+          <details>
+            <summary>
+              <span class="tl-dot"></span>
+              <span class="tl-v">1.0.0</span>
+              <span class="tl-name">Première version de bureau</span>
+              <span></span>
+              <span class="tl-date">23 oct. 2026</span>
+              <span class="tl-chev" aria-hidden="true"></span>
+            </summary>
+            <ul class="ch">
+              <li data-k="nouveau">Installateur Windows</li>
+              <li data-k="nouveau">Quatre modes : poste unique, serveur réseau, poste client, PostgreSQL</li>
+              <li data-k="nouveau">Factures, proformas, devis, bons de livraison, avoirs, clients et articles</li>
+              <li data-k="nouveau">Licence avec période d'essai</li>
+            </ul>
+          </details>
+        </li>
+      </ol>
+      <p class="tl-empty" hidden>Aucun changement de ce type dans les versions ouvertes.</p>
+    </div>
   </div>
 </section>
 
@@ -652,7 +944,7 @@ section { padding: 120px 0; position: relative; }
         <p class="about">Factures, stock, caisse et impayés pour les commerces, même sans internet.</p>
       </div>
       <div><h4>Produit</h4><ul><li><a href="#fonctions">Fonctions</a></li><li><a href="#comment">Comment ça marche</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-      <div><h4>Téléchargements</h4><ul><li><a href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.3.0/GestionCommerciale-Setup-1.3.0.exe">Version 1.3.0</a></li><li><a href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.4.0/GestionCommerciale-Setup-1.4.0.exe">Preview 1.4.0</a></li><li><a href="#versions">Historique</a></li></ul></div>
+      <div><h4>Téléchargements</h4><ul><li><a href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.3.0/GestionCommerciale-Setup-1.3.0.exe">Version 1.3.0</a></li><li><a href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.4.0/GestionCommerciale-Setup-1.4.0.exe">Preview 1.4.0</a></li><li><a href="#historique">Historique</a></li></ul></div>
       <div><h4>Contact</h4><ul><li><a href="https://wa.me/22871576308" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="tel:+22896955044">+228 96 95 50 44</a></li><li><a href="mailto:abalodevelopper@gmail.com">abalodevelopper@gmail.com</a></li></ul></div>
     </div>
     <div class="foot-bottom"><span>© 2026 AB-DIGICOM · Tous droits réservés</span><span>Développé par Abalo.dev</span></div>
@@ -664,7 +956,33 @@ section { padding: 120px 0; position: relative; }
   document.querySelectorAll(".track").forEach((t) => {
     [...t.children].forEach((el) => t.appendChild(el.cloneNode(true)));
   });
-  const blocs = document.querySelectorAll(".rv");
+  // Copier l'empreinte du fichier.
+  document.querySelectorAll(".copy").forEach((b) => {
+    const texte = b.textContent;
+    b.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(b.dataset.sha); b.textContent = "Empreinte copiée ✓"; }
+      catch { window.prompt("Empreinte SHA-256 :", b.dataset.sha); }
+      b.classList.add("done");
+      setTimeout(() => { b.textContent = texte; b.classList.remove("done"); }, 2200);
+    });
+  });
+
+  // Filtres de l'historique.
+  const filtres = document.querySelectorAll(".f");
+  filtres.forEach((b) => b.addEventListener("click", () => {
+    filtres.forEach((x) => x.classList.toggle("on", x === b));
+    const k = b.dataset.f;
+    document.querySelectorAll(".tl-item").forEach((item) => {
+      let visibles = 0;
+      item.querySelectorAll(".ch li").forEach((li) => {
+        const ok = k === "tout" || li.dataset.k === k;
+        li.hidden = !ok;
+        if (ok) visibles++;
+      });
+      item.hidden = visibles === 0;
+      if (k !== "tout" && visibles) item.querySelector("details").open = true;
+    });
+  }));  const blocs = document.querySelectorAll(".rv");
   if ("IntersectionObserver" in window && !calme) {
     const vus = new IntersectionObserver((entrees) => {
       entrees.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("on"); vus.unobserve(en.target); } });
@@ -672,6 +990,8 @@ section { padding: 120px 0; position: relative; }
     blocs.forEach((el) => {
       const freres = [...el.parentElement.children].filter((c) => c.classList.contains("rv"));
       el.style.setProperty("--d", `${Math.max(0, Math.min(freres.indexOf(el), 5)) * 0.08}s`);
+      // Une fois apparu, le bloc retrouve ses effets de survol.
+      el.addEventListener("transitionend", function fin(ev) { if (ev.target === el && el.classList.contains("on")) { el.classList.remove("rv", "on"); el.removeEventListener("transitionend", fin); } });
       vus.observe(el);
     });
   } else {
