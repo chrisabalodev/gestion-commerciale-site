@@ -592,6 +592,42 @@ section { padding: 120px 0; position: relative; }
 .a-1 { left: 18px; bottom: 18px; animation-delay: -1s; }
 .a-2 { right: 16px; top: 12px; animation-delay: -4s; }
 
+/* Version futuriste : scène sombre, sol en grille, navigateur en 3D */
+.fx { padding: 78px 90px 76px 34px; border-radius: 40px; background: radial-gradient(120% 90% at 30% 0%, #2a1f5c 0%, #120f26 55%, #0a0817 100%); isolation: isolate; overflow: hidden; box-shadow: 0 40px 90px -40px rgba(42,31,92,.8); }
+.fx::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; background: conic-gradient(from var(--fx-a, 0deg), rgba(167,139,250,.0), #a78bfa, #ff8a5c, rgba(62,224,197,.9), rgba(167,139,250,.0) 60%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: fxspin 8s linear infinite; z-index: 3; pointer-events: none; }
+@property --fx-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes fxspin { to { --fx-a: 360deg; } }
+.fx-glow { position: absolute; z-index: -1; width: 70%; aspect-ratio: 1; left: 15%; top: 18%; border-radius: 50%; background: radial-gradient(circle, rgba(167,139,250,.55), rgba(255,138,92,.25) 45%, transparent 70%); filter: blur(40px); animation: fxbreath 6s ease-in-out infinite; }
+@keyframes fxbreath { 50% { opacity: .6; transform: scale(1.08); } }
+.fx-floor { position: absolute; z-index: -1; left: -30%; right: -30%; bottom: -12%; height: 60%; background-image: linear-gradient(rgba(167,139,250,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(167,139,250,.35) 1px, transparent 1px); background-size: 44px 44px; transform: perspective(420px) rotateX(64deg); transform-origin: bottom; -webkit-mask-image: linear-gradient(to top, #000 10%, transparent 85%); mask-image: linear-gradient(to top, #000 10%, transparent 85%); animation: fxfloor 2.4s linear infinite; }
+@keyframes fxfloor { to { background-position: 0 44px; } }
+.fx-star { position: absolute; z-index: -1; width: 3px; height: 3px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px 2px rgba(167,139,250,.9); animation: fxtw 3s ease-in-out infinite; }
+.s1 { left: 12%; top: 14%; } .s2 { left: 46%; top: 8%; animation-delay: -1s; } .s3 { right: 30%; top: 22%; animation-delay: -2s; } .s4 { left: 6%; top: 48%; animation-delay: -.5s; } .s5 { right: 8%; top: 58%; animation-delay: -1.6s; }
+@keyframes fxtw { 50% { opacity: .2; transform: scale(.5); } }
+.fx-hud { position: absolute; left: 22px; top: 22px; display: inline-flex; align-items: center; gap: 9px; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); color: #d9d2ff; font-size: .74rem; font-weight: 600; letter-spacing: .02em; font-variant-numeric: tabular-nums; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.fx-bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
+.fx-bars i { width: 3px; border-radius: 2px; background: #3ee0c5; animation: fxbar 1.1s ease-in-out infinite; }
+.fx-bars i:nth-child(1) { height: 40%; } .fx-bars i:nth-child(2) { height: 75%; animation-delay: -.3s; } .fx-bars i:nth-child(3) { height: 100%; animation-delay: -.6s; } .fx-bars i:nth-child(4) { height: 60%; animation-delay: -.9s; }
+@keyframes fxbar { 50% { transform: scaleY(.45); } }
+.fx-stage { transform: perspective(1400px) rotateY(-11deg) rotateX(6deg); transform-origin: left center; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.fx:hover .fx-stage { transform: perspective(1400px) rotateY(-4deg) rotateX(2deg); }
+.fx .browser { position: relative; background: #17142a; box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 30px 80px -20px rgba(115,87,214,.75), 0 0 60px -10px rgba(255,138,92,.35); }
+.fx .b-bar { background: #17142a; }
+.fx .dots3 i { background: rgba(255,255,255,.18); }
+.fx .dots3 i:first-child { background: #ff8a5c; }
+.fx .url { background: rgba(255,255,255,.07); color: #d9d2ff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
+.fx .url svg { color: #3ee0c5; }
+.fx-scan { position: absolute; left: 0; right: 0; top: 0; height: 30%; background: linear-gradient(to bottom, transparent, rgba(167,139,250,.22) 85%, rgba(167,139,250,.6)); mix-blend-mode: screen; animation: fxscan 4.5s cubic-bezier(.5,0,.5,1) infinite; pointer-events: none; }
+@keyframes fxscan { 0% { transform: translateY(-110%); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(360%); opacity: 0; } }
+.fx .phone-w { bottom: 28px; right: 26px; background: #0a0817; box-shadow: 0 0 0 1px rgba(255,255,255,.18), 0 0 40px rgba(167,139,250,.45), 0 30px 60px -20px rgba(0,0,0,.8); z-index: 2; }
+.fx .agency { background: rgba(23,20,42,.72); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), 0 20px 40px -18px rgba(0,0,0,.7); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); z-index: 2; }
+.fx .agency b { color: #fff; }
+.fx .agency small { color: #a99fe0; }
+.fx .live { background: #3ee0c5; animation-name: fxlive; }
+@keyframes fxlive { 0% { box-shadow: 0 0 0 0 rgba(62,224,197,.6); } 70% { box-shadow: 0 0 0 7px rgba(62,224,197,0); } 100% { box-shadow: 0 0 0 0 rgba(62,224,197,0); } }
+.fx .a-2 { top: 18px; right: 22px; }
+.fx .a-1 { left: 22px; bottom: 22px; }
+
 @media (max-width: 1080px) {
   .row2 { grid-template-columns: 1fr; gap: 40px; }
   .flip2 .r-txt { order: 0; }
@@ -613,9 +649,15 @@ section { padding: 120px 0; position: relative; }
   .phone-w img { border-radius: 15px; }
   .a-2 { display: none; }
   .a-1 { left: 12px; bottom: 10px; }
+  .fx { padding: 62px 50px 56px 14px; border-radius: 28px; }
+  .fx-hud { left: 14px; top: 16px; }
+  .fx-stage { transform: perspective(900px) rotateY(-8deg) rotateX(4deg); }
+  .fx .phone-w { width: 92px; right: 12px; bottom: 16px; }
+  .fx .a-1 { left: 12px; bottom: 12px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .wires path, .srv-ring, .cli, .live { animation: none; }
+  .wires path, .srv-ring, .cli, .live, .fx::before, .fx-glow, .fx-floor, .fx-star, .fx-bars i { animation: none; }
+  .fx-scan { display: none; }
   .pk { display: none; }
 }
 
@@ -881,13 +923,20 @@ section { padding: 120px 0; position: relative; }
         <a class="r-link" href="https://wa.me/22871576308?text=Bonjour%2C%20je%20souhaite%20l%27application%20web%20Gestion%20Commerciale." target="_blank" rel="noopener">Demander la mise en place <span>→</span></a>
       </div>
 
-      <div class="web2 rv" aria-hidden="true">
-        <div class="browser">
-          <div class="b-bar">
-            <span class="dots3"><i></i><i></i><i></i></span>
-            <span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>gestion.votre-entreprise.tg</span>
+      <div class="web2 fx rv" aria-hidden="true">
+        <div class="fx-glow"></div>
+        <div class="fx-floor"></div>
+        <i class="fx-star s1"></i><i class="fx-star s2"></i><i class="fx-star s3"></i><i class="fx-star s4"></i><i class="fx-star s5"></i>
+        <div class="fx-hud"><span class="fx-bars"><i></i><i></i><i></i><i></i></span>Synchro temps réel · 12 ms</div>
+        <div class="fx-stage">
+          <div class="browser">
+            <div class="b-bar">
+              <span class="dots3"><i></i><i></i><i></i></span>
+              <span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>gestion.votre-entreprise.tg</span>
+            </div>
+            <img src="../images/impayes.png" width="1440" height="900" alt="">
+            <span class="fx-scan"></span>
           </div>
-          <img src="../images/impayes.png" width="1440" height="900" alt="">
         </div>
         <div class="phone-w float"><img src="../images/mobile.png" width="390" height="844" alt=""></div>
         <div class="agency a-1 float"><i class="live"></i><span><b>Agence Lomé</b><small>Synchronisée</small></span></div>
