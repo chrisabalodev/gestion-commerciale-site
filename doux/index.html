@@ -78,7 +78,7 @@ section { padding: 110px 0; }
 .pill:hover { box-shadow: inset 0 0 0 1px rgba(29,29,27,.2); }
 .pill b { white-space: nowrap; padding: 3px 10px; border-radius: 999px; background: var(--sage); color: var(--sage-ink); font-size: .76rem; font-weight: 600; }
 .hero h1 { font-size: clamp(2.8rem, 7.4vw, 5.6rem); margin: 26px auto 0; max-width: 900px; letter-spacing: -0.05em; }
-.hero h1 span { color: var(--sage-ink); }
+.hero h1 .accent { color: var(--sage-ink); }
 .hero .lead { max-width: 560px; margin: 22px auto 0; font-size: 1.14rem; color: var(--ink-2); }
 .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 34px; }
 .note { margin-top: 18px; font-size: .88rem; color: var(--muted); }
@@ -253,6 +253,106 @@ section { padding: 110px 0; }
   .btn, .moment, .shot img { transition: none; }
   .js .rv { opacity: 1; transform: none; transition: none; }
 }
+/* Animations */
+.btn-ink { position: relative; overflow: hidden; }
+.btn-ink::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent); transform: skewX(-20deg); transition: left .7s ease; }
+.btn-ink:hover::after { left: 130%; }
+.nav-in { transition: box-shadow .3s, background .3s; }
+.nav.scrolled .nav-in { background: rgba(255,255,255,.9); box-shadow: inset 0 0 0 1px var(--line), 0 18px 40px -22px rgba(29,29,27,.35); }
+.pill b { position: relative; padding-left: 20px; }
+.pill b::before { content: ""; position: absolute; left: 9px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--sage-ink); animation: beat 2s ease-out infinite; }
+@keyframes beat { 0% { box-shadow: 0 0 0 0 rgba(75,106,82,.5); } 80%, 100% { box-shadow: 0 0 0 7px rgba(75,106,82,0); } }
+
+.hero h1 .w { display: inline-block; opacity: 0; transform: translateY(.35em); filter: blur(8px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1), filter .9s ease; transition-delay: calc(var(--i) * 90ms + 120ms); }
+.hero h1.go .w { opacity: 1; transform: none; filter: none; }
+
+.showcase::after { content: ""; position: absolute; width: 380px; height: 380px; border-radius: 50%; right: -120px; bottom: -160px; background: var(--sage-2); filter: blur(70px); opacity: .7; animation: wander 14s ease-in-out infinite; }
+.showcase::before { animation: wander 18s ease-in-out infinite reverse; }
+@keyframes wander { 0%, 100% { translate: 0 0; } 33% { translate: 60px 30px; } 66% { translate: -40px 20px; } }
+.screen { z-index: 1; transform: perspective(1400px) rotateX(calc((1 - var(--p, 1)) * 16deg)) scale(calc(.9 + var(--p, 1) * .1)); transform-origin: 50% 100%; will-change: transform; }
+.chip-float { z-index: 2; }
+.js .chip-float { opacity: 0; }
+.showcase.in .chip-float { animation: chipin .8s cubic-bezier(.2,1.4,.4,1) both, drift 8s ease-in-out infinite; animation-delay: 1s, 1.8s; }
+.showcase.in .cf-2 { animation-delay: 1.35s, -2s; }
+.showcase.in .cf-3 { animation-delay: 1.7s, -5s; }
+@keyframes chipin { from { opacity: 0; scale: .8; } to { opacity: 1; scale: 1; } }
+.cf-3 { left: 14%; bottom: 26px; }
+
+.marq { margin-top: 18px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.marq .trades { margin-top: 0; flex-wrap: nowrap; justify-content: flex-start; width: max-content; padding: 2px 0; animation: slide 36s linear infinite; }
+.marq:hover .trades { animation-play-state: paused; }
+@keyframes slide { to { transform: translateX(-50%); } }
+
+.track-day { position: relative; height: 2px; margin: 48px 6px 0; border-radius: 2px; background: var(--line); }
+.track-day i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--sand-ink), var(--sky-ink), var(--sage-ink)); transition: width 2.6s cubic-bezier(.45,0,.2,1) .2s; }
+.track-day span { position: absolute; top: 50%; left: 0; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 4px rgba(138,106,63,.15), var(--shadow); transition: left 2.6s cubic-bezier(.45,0,.2,1) .2s; }
+.track-day span::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: var(--sand-ink); }
+.track-day.in i { width: 100%; }
+.track-day.in span { left: 100%; }
+.day { margin-top: 28px; }
+.js .day .ui-row { opacity: 0; transform: translateX(-12px); }
+.day.in .ui-row { animation: rowin .6s cubic-bezier(.2,.8,.2,1) both; }
+.day.in .m1 .ui-row { animation-delay: .5s; }
+.day.in .m1 .ui-row + .ui-row { animation-delay: .7s; }
+.day.in .m2 .ui-row { animation-delay: 1.3s; }
+.day.in .m2 .ui-row + .ui-row { animation-delay: 1.5s; }
+.day.in .m3 .ui-row { animation-delay: 2.1s; }
+.day.in .m3 .ui-row + .ui-row { animation-delay: 2.3s; }
+@keyframes rowin { to { opacity: 1; transform: none; } }
+.day.in .tagx { animation: tagpop .5s cubic-bezier(.2,1.5,.4,1) both; animation-delay: inherit; }
+@keyframes tagpop { from { scale: .6; opacity: 0; } to { scale: 1; opacity: 1; } }
+.time b { font-variant-numeric: tabular-nums; }
+
+.js .compare li { opacity: 0; transform: translateY(10px); }
+.compare.in li { animation: rowin .6s cubic-bezier(.2,.8,.2,1) both; }
+.compare.in li:nth-child(2) { animation-delay: .12s; }
+.compare.in li:nth-child(3) { animation-delay: .24s; }
+.compare.in li:nth-child(4) { animation-delay: .36s; }
+.compare.in .after li { animation-delay: .5s; }
+.compare.in .after li:nth-child(2) { animation-delay: .62s; }
+.compare.in .after li:nth-child(3) { animation-delay: .74s; }
+.compare.in .after li:nth-child(4) { animation-delay: .86s; }
+.compare.in .after li i { animation: tagpop .5s cubic-bezier(.2,1.6,.4,1) both; animation-delay: inherit; }
+
+.js .feat-grid .feat { opacity: 0; transform: translateY(14px); }
+.feat-grid.in .feat { animation: rowin .7s cubic-bezier(.2,.8,.2,1) both; }
+.feat-grid.in .feat:nth-child(2) { animation-delay: .08s; }
+.feat-grid.in .feat:nth-child(3) { animation-delay: .16s; }
+.feat-grid.in .feat:nth-child(4) { animation-delay: .24s; }
+.feat-grid.in .feat:nth-child(5) { animation-delay: .32s; }
+.feat-grid.in .feat:nth-child(6) { animation-delay: .4s; }
+.f-ic { transition: transform .4s cubic-bezier(.2,1.4,.4,1); }
+.feat:hover .f-ic, .way:hover .f-ic { transform: translateY(-3px) rotate(-8deg); }
+
+.shot img { transform: translateY(calc(26px + var(--y, 0px))); transition: none; will-change: transform; }
+.shot:hover img { transform: translateY(calc(26px + var(--y, 0px))); }
+.shot { transition: transform .4s ease; }
+.shot:hover { transform: translateY(-3px); }
+.way, .ver { transition: transform .3s ease, box-shadow .3s; }
+.way:hover, .ver:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1px var(--line), var(--shadow-lg); }
+
+.faq-list details { interpolate-size: allow-keywords; }
+.faq-list details::details-content { height: 0; overflow: hidden; transition: height .4s ease, content-visibility .4s allow-discrete; }
+.faq-list details[open]::details-content { height: auto; }
+.faq-list summary { transition: color .2s; }
+.faq-list summary:hover { color: var(--sage-ink); }
+
+.end::before { animation: wander 16s ease-in-out infinite; }
+.end::after { animation: wander 20s ease-in-out infinite reverse; }
+
+@media (max-width: 680px) {
+  .track-day { margin-top: 36px; }
+  .shot img, .shot:hover img { transform: translateY(calc(12px + var(--y, 0px) * .45)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pill b::before, .showcase::before, .showcase::after, .end::before, .end::after, .marq .trades { animation: none; }
+  .js .chip-float, .js .day .ui-row, .js .compare li, .js .feat-grid .feat { opacity: 1; transform: none; animation: none; }
+  .screen, .shot img { transform: none; }
+  .track-day i { width: 100%; transition: none; }
+  .track-day span { left: 100%; transition: none; }
+  .marq .trades { flex-wrap: wrap; justify-content: center; width: auto; }
+  .marq .trades span[aria-hidden] { display: none; }
+}
 </style>
 </head>
 <body>
@@ -274,7 +374,7 @@ section { padding: 110px 0; }
 <section class="hero">
   <div class="wrap">
     <a class="pill rv" href="#versions"><b>1.4 Preview</b>Impayés, clôture de caisse et droits des vendeurs →</a>
-    <h1 class="rv">Votre commerce,<br><span>en ordre.</span></h1>
+    <h1 class="rv">Votre commerce,<br><span class="accent">en ordre.</span></h1>
     <p class="lead rv">Factures, stock, caisse et clients au même endroit. Un logiciel calme et clair, pensé pour le comptoir, qui marche même sans internet.</p>
     <div class="cta rv">
       <a class="btn btn-ink" href="#versions"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.5v7H3zM11.5 4.4 21 3v8.5h-9.5zM3 12.5h7.5v7L3 18.5zM11.5 12.5H21V21l-9.5-1.4z"/></svg>Essayer 30 jours</a>
@@ -295,20 +395,31 @@ section { padding: 110px 0; }
         <span class="dot-ic ic-sand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span>
         <span><b>Stock à jour</b><small>après chaque vente</small></span>
       </div>
+      <div class="chip-float cf-3" aria-hidden="true">
+        <span class="dot-ic ic-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg></span>
+        <span><b>Relance envoyée</b><small>par WhatsApp</small></span>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="for wrap rv">
   <p>Pensé pour les commerces de proximité et les grossistes</p>
-  <div class="trades">
+  <div class="marq"><div class="trades">
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>Quincailleries</span>
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Boutiques</span>
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg>Matériaux de construction</span>
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8M9 2v3l-2 4v11a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9l-2-4V2"/></svg>Dépôts de boissons</span>
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Grossistes</span>
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg>Et bien d'autres</span>
-  </div>
+  
+    <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>Quincailleries</span>
+    <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Boutiques</span>
+    <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg>Matériaux de construction</span>
+    <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8M9 2v3l-2 4v11a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9l-2-4V2"/></svg>Dépôts de boissons</span>
+    <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Grossistes</span>
+    <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg>Et bien d'autres</span>
+  </div></div>
 </div>
 
 <section id="journee">
@@ -318,13 +429,14 @@ section { padding: 110px 0; }
       <h2>Une journée au magasin.</h2>
       <p>De l'ouverture à la fermeture, chaque moment a son écran. Simple à apprendre, rapide à utiliser.</p>
     </div>
+    <div class="track-day" aria-hidden="true"><i></i><span></span></div>
     <div class="day">
       <article class="moment m1 rv">
         <div class="time"><b>8 h</b><span>Ouverture</span></div>
         <h3>On sait où on en est</h3>
         <p>Le tableau de bord montre les ventes de la veille, l'argent à encaisser et les articles qui manquent.</p>
         <div class="ui" aria-hidden="true">
-          <div class="ui-row"><span>Ventes d'hier</span><b>1 185 900 F</b></div>
+          <div class="ui-row"><span>Ventes d'hier</span><b data-count="1185900" data-delay="500">1 185 900 F</b></div>
           <div class="ui-row"><span>Disjoncteur</span><span class="tagx t-warn">6 restants</span></div>
         </div>
       </article>
@@ -333,7 +445,7 @@ section { padding: 110px 0; }
         <h3>La facture en quelques secondes</h3>
         <p>On choisit le client et les articles : le total, le stock et la caisse se mettent à jour tout seuls.</p>
         <div class="ui" aria-hidden="true">
-          <div class="ui-row"><span>Facture n° 10042</span><b>84 500 F</b></div>
+          <div class="ui-row"><span>Facture n° 10042</span><b data-count="84500" data-delay="1300">84 500 F</b></div>
           <div class="ui-row"><span>Mobile Money</span><span class="tagx t-ok">Payée</span></div>
         </div>
       </article>
@@ -534,18 +646,97 @@ section { padding: 110px 0; }
 
 <script>
 (function () {
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Titre : les mots apparaissent un par un
+  var h1 = document.querySelector(".hero h1");
+  if (h1 && !reduce) {
+    h1.setAttribute("aria-label", h1.textContent.replace(/\s+/g, " ").trim());
+    var n = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (c) {
+        if (c.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var w = document.createElement("span");
+            w.className = "w"; w.setAttribute("aria-hidden", "true");
+            w.style.setProperty("--i", n++); w.textContent = part;
+            frag.appendChild(w);
+          });
+          c.parentNode.replaceChild(frag, c);
+        } else if (c.nodeType === 1 && c.tagName !== "BR") walk(c);
+      });
+    })(h1);
+    h1.classList.remove("rv");
+    requestAnimationFrame(function () { requestAnimationFrame(function () { h1.classList.add("go"); }); });
+  }
+
+  // Apparition au défilement
   var els = document.querySelectorAll(".rv");
-  if (!("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("on"); }); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      var el = e.target;
-      el.classList.add("on");
-      io.unobserve(el);
-      el.addEventListener("transitionend", function () { el.classList.remove("rv", "on"); }, { once: true });
+  var anim = document.querySelectorAll(".showcase, .track-day, .day, .compare, .feat-grid");
+  if (!("IntersectionObserver" in window) || reduce) {
+    els.forEach(function (el) { el.classList.add("on"); });
+    anim.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        el.classList.add("on");
+        io.unobserve(el);
+        el.addEventListener("transitionend", function () { el.classList.remove("rv", "on"); }, { once: true });
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    els.forEach(function (el) { io.observe(el); });
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("in");
+        io2.unobserve(e.target);
+        if (e.target.classList.contains("day")) countUp(e.target);
+      });
+    }, { threshold: .25 });
+    anim.forEach(function (el) { io2.observe(el); });
+  }
+
+  // Montants qui défilent
+  function countUp(root) {
+    root.querySelectorAll("[data-count]").forEach(function (el) {
+      var end = +el.getAttribute("data-count"), t0 = null, delay = +(el.getAttribute("data-delay") || 0);
+      function step(t) {
+        if (t0 === null) t0 = t + delay;
+        var k = Math.min(1, Math.max(0, (t - t0) / 1400));
+        k = 1 - Math.pow(1 - k, 3);
+        el.textContent = Math.round(end * k).toLocaleString("fr-FR") + " F";
+        if (k < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
     });
-  }, { rootMargin: "0px 0px -8% 0px" });
-  els.forEach(function (el) { io.observe(el); });
+  }
+
+  // Barre de navigation, capture qui se redresse, écrans en parallaxe
+  var nav = document.querySelector(".nav"), show = document.querySelector(".showcase");
+  var imgs = document.querySelectorAll(".shot img"), ticking = false;
+  function frame() {
+    ticking = false;
+    var vh = innerHeight;
+    nav.classList.toggle("scrolled", scrollY > 10);
+    if (reduce) return;
+    if (show) {
+      var r = show.getBoundingClientRect();
+      show.style.setProperty("--p", Math.min(1, Math.max(0, (vh - r.top) / (vh * .85))).toFixed(3));
+    }
+    imgs.forEach(function (img) {
+      var b = img.parentNode.getBoundingClientRect();
+      var c = Math.max(-1, Math.min(1, (b.top + b.height / 2 - vh / 2) / vh));
+      img.style.setProperty("--y", (c * 26).toFixed(1) + "px");
+    });
+  }
+  addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+  addEventListener("resize", frame);
+  frame();
 })();
 </script>
 </body>
