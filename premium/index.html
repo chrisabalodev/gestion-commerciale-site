@@ -259,6 +259,84 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
   .lit .w { opacity: 1; }
   .handset, .side { transform: none; opacity: 1; }
 }
+/* Animations modérées */
+.progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--grad); transform-origin: 0 50%; transform: scaleX(var(--sp, 0)); }
+.js .up { filter: blur(6px); transition: opacity .9s ease, transform 1s cubic-bezier(.2,.8,.2,1), filter .9s ease; }
+.js .up.in { filter: none; }
+.hero .up:nth-child(2) { transition-delay: .1s; }
+.hero .up:nth-child(3) { transition-delay: .2s; }
+.hero .up:nth-child(4) { transition-delay: .3s; }
+.grad { background-size: 200% 100%; animation: sheen 9s ease-in-out infinite; }
+@keyframes sheen { 50% { background-position: 100% 0; } }
+.pill { position: relative; overflow: hidden; }
+.pill::after { content: ""; position: absolute; top: 0; bottom: 0; left: -70%; width: 50%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.3), transparent); transform: skewX(-20deg); transition: left .7s ease; }
+.pill:hover::after { left: 130%; }
+.more::after { display: inline-block; transition: transform .25s ease; }
+.more:hover::after { transform: translateX(3px); }
+
+.toast { position: absolute; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 12px 18px 12px 12px; border-radius: 18px; background: rgba(255,255,255,.88); -webkit-backdrop-filter: saturate(1.8) blur(20px); backdrop-filter: saturate(1.8) blur(20px); box-shadow: 0 20px 50px -20px rgba(0,0,0,.35), 0 0 0 1px rgba(0,0,0,.05); font-size: .9rem; text-align: left; opacity: calc((var(--z, 0) - var(--at)) * 6); transform: translateY(calc(max(0, 1 - (var(--z, 0) - var(--at)) * 6) * 18px)); }
+.toast b { display: block; font-size: .95rem; }
+.toast small { color: var(--gray); }
+.toast i { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; color: #fff; font-style: normal; font-weight: 700; flex: none; }
+.toast svg { width: 17px; height: 17px; }
+.t-1 { --at: .55; left: max(16px, 6%); top: 22%; }
+.t-1 i { background: #1d7d3a; }
+.t-2 { --at: .7; right: max(16px, 6%); top: 46%; }
+.t-2 i { background: #25d366; }
+
+.ticker-row span { transition: color .4s; }
+.ticker:hover .ticker-row { animation-play-state: paused; }
+
+.step { transform: translateX(-10px); transition: opacity .5s ease, transform .6s cubic-bezier(.2,.8,.2,1); }
+.step.on { transform: none; }
+.step .k { display: inline-flex; align-items: center; gap: 8px; }
+.step .k::before { content: ""; width: 0; height: 2px; border-radius: 2px; background: var(--grad); transition: width .5s ease .1s; }
+.step.on .k::before { width: 22px; }
+.device { transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.stick:hover .device { transform: translateY(-4px); }
+
+.tile { transition: opacity .8s ease, transform 1s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease; }
+.js .tiles.in .tile:hover, .tile:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -36px rgba(0,0,0,.35); }
+.tile.img img { transition: object-position 5s ease; }
+.tile.img:hover img { object-position: bottom; }
+.draw path, .draw circle, .draw rect { stroke-dasharray: 120; stroke-dashoffset: 120; transition: stroke-dashoffset 1.8s cubic-bezier(.3,0,.2,1) .3s; }
+.in .draw path, .in .draw circle, .in .draw rect, .draw.in path, .draw.in circle, .draw.in rect { stroke-dashoffset: 0; }
+
+.handset { animation: bob 7s ease-in-out infinite; }
+@keyframes bob { 50% { translate: 0 -10px; } }
+.phone-sec { position: relative; }
+.phone-sec::before { content: ""; position: absolute; left: 50%; bottom: 0; width: 720px; height: 520px; margin-left: -360px; border-radius: 50%; background: radial-gradient(closest-side, rgba(123,92,255,.18), transparent); opacity: var(--ph, 1); pointer-events: none; }
+
+.ed li { transition: opacity .6s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+.js .ed:not(.in) li { opacity: 0; transform: translateY(12px); }
+.ed.in li:nth-child(2) { transition-delay: .1s; }
+.ed.in li:nth-child(3) { transition-delay: .2s; }
+.ed.in li:nth-child(4) { transition-delay: .3s; }
+
+.card { transition: opacity .9s ease, transform 1s cubic-bezier(.2,.8,.2,1), filter .9s ease, box-shadow .4s ease; }
+.card.in:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -36px rgba(0,0,0,.3); }
+.dl-grid .card.up:nth-child(2) { transition-delay: .12s; }
+
+.final { position: relative; overflow: hidden; isolation: isolate; }
+.final::before { content: ""; position: absolute; z-index: -1; width: 640px; height: 640px; left: 50%; top: 50%; margin: -320px 0 0 -320px; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,113,227,.35), rgba(123,92,255,.18) 50%, transparent); filter: blur(20px); animation: glow 10s ease-in-out infinite; }
+@keyframes glow { 0%, 100% { transform: translate(-60px, 20px) scale(1); } 50% { transform: translate(60px, -20px) scale(1.12); } }
+
+@media (max-width: 600px) {
+  .toast { font-size: .8rem; padding: 9px 12px 9px 9px; }
+  .toast i { width: 28px; height: 28px; }
+  .t-1 { top: 12%; }
+  .t-2 { top: auto; bottom: 14%; }
+  .phone-sec::before { width: 420px; height: 420px; margin-left: -210px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .up { filter: none; }
+  .grad, .handset, .final::before { animation: none; }
+  .toast { opacity: 1; transform: none; }
+  .step { transform: none; }
+  .draw path, .draw circle, .draw rect { stroke-dashoffset: 0; transition: none; }
+  .js .ed:not(.in) li { opacity: 1; transform: none; }
+  .tile.img img { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -274,6 +352,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
     </nav>
     <a class="pill sm" href="#telecharger">Télécharger</a>
   </div>
+  <span class="progress" aria-hidden="true"></span>
 </header>
 
 <main>
@@ -295,6 +374,8 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
       <div class="zoom-bar"><i></i><i></i><i></i></div>
       <img src="../images/tableau-de-bord.png" width="1440" height="900" alt="Tableau de bord de Gestion Commerciale">
     </div>
+    <div class="toast t-1" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><span><b>Facture payée</b><small>84 500 F · Mobile Money</small></span></div>
+    <div class="toast t-2" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg></i><span><b>Relance envoyée</b><small>Boutique Espoir · par WhatsApp</small></span></div>
     <p class="zoom-caption">Le tableau de bord : ventes, chiffre d'affaires et argent à encaisser, d'un coup d'œil.</p>
   </div>
 </div>
@@ -380,7 +461,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
         <div><h3>Types de documents.</h3><p>Devis, proforma, facture, livraison, avoir.</p></div>
       </div>
       <div class="tile">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="url(#ig)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="ig" x1="0" x2="1"><stop offset="0" stop-color="#0071e3"/><stop offset="1" stop-color="#e05c8a"/></linearGradient></defs><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v1M17 11l2 2 4-4"/></svg>
+        <svg class="icon draw" viewBox="0 0 24 24" fill="none" stroke="url(#ig)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="ig" x1="0" x2="1"><stop offset="0" stop-color="#0071e3"/><stop offset="1" stop-color="#e05c8a"/></linearGradient></defs><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v1M17 11l2 2 4-4"/></svg>
         <div><h3>Un accès par vendeur.</h3><p>Vous décidez qui remise, change un prix ou supprime.</p></div>
       </div>
     </div>
@@ -404,7 +485,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
     <h2 class="big center up">Deux éditions.<br><span class="muted">Une seule façon de bien gérer.</span></h2>
     <div class="ed-grid">
       <div class="ed up">
-        <svg viewBox="0 0 24 24" fill="none" stroke="url(#ig)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <svg class="draw" viewBox="0 0 24 24" fill="none" stroke="url(#ig)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         <h3>Logiciel de bureau</h3>
         <p class="tag">Pour Windows 10 et 11</p>
         <ul>
@@ -416,7 +497,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
         <div class="actions"><a class="pill" href="#telecharger">Télécharger</a></div>
       </div>
       <div class="ed up">
-        <svg viewBox="0 0 24 24" fill="none" stroke="url(#ig)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg>
+        <svg class="draw" viewBox="0 0 24 24" fill="none" stroke="url(#ig)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg>
         <h3>Application web</h3>
         <p class="tag">Installée sur votre serveur</p>
         <ul>
@@ -583,7 +664,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
   }
 
   // Effets liés au défilement
-  var zoom = document.getElementById("zoom"), zf = zoom.querySelector(".zoom-in"), phone = document.getElementById("phone"), ticking = false;
+  var bar = document.querySelector(".progress"), zoom = document.getElementById("zoom"), zf = zoom.querySelector(".zoom-in"), phone = document.getElementById("phone"), ticking = false;
   function clamp(v) { return Math.max(0, Math.min(1, v)); }
   function frame() {
     ticking = false;
@@ -597,6 +678,9 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
     words.forEach(function (w, i) { w.classList.toggle("on", i < n); });
     var pr = phone.getBoundingClientRect();
     phone.style.setProperty("--ph", clamp((vh - pr.top) / (vh * .8)).toFixed(3));
+    phone.parentNode.style.setProperty("--ph", clamp((vh - pr.top) / (vh * .8)).toFixed(3));
+    var dh = document.documentElement.scrollHeight - vh;
+    bar.style.setProperty("--sp", dh > 0 ? (scrollY / dh).toFixed(4) : 0);
   }
   addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
   addEventListener("resize", frame);
