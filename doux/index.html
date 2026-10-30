@@ -97,7 +97,7 @@ section { padding: 110px 0; }
 @keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
 /* Pour qui */
-.for { padding: 56px 0 0; text-align: center; }
+.for { padding-top: 56px; text-align: center; }
 .for p { font-size: .9rem; color: var(--muted); }
 .trades { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 18px; }
 .trades span { display: inline-flex; align-items: center; gap: 9px; padding: 10px 16px; border-radius: 999px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); font-size: .92rem; font-weight: 500; color: var(--ink-2); }
@@ -353,6 +353,107 @@ section { padding: 110px 0; }
   .marq .trades { flex-wrap: wrap; justify-content: center; width: auto; }
   .marq .trades span[aria-hidden] { display: none; }
 }
+/* Écrans du héros */
+.tabs { position: relative; z-index: 2; display: inline-flex; gap: 4px; padding: 5px; margin-bottom: 24px; border-radius: 999px; background: rgba(255,255,255,.7); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(255,255,255,.9), var(--shadow); }
+.tab { position: relative; font: inherit; font-size: .88rem; font-weight: 500; color: var(--ink-2); background: none; border: 0; padding: 9px 16px; border-radius: 999px; cursor: pointer; transition: color .25s, background .25s; white-space: nowrap; overflow: hidden; flex: none; }
+.tab:hover { color: var(--ink); }
+.tab[aria-selected="true"] { background: var(--ink); color: #fff; }
+.tab i { position: absolute; left: 16px; right: 16px; bottom: 4px; height: 2px; border-radius: 2px; background: rgba(255,255,255,.35); transform-origin: 0 50%; transform: scaleX(0); }
+.tab[aria-selected="true"] i { animation: tabfill 5s linear both; }
+.tabs.stop .tab i { display: none; }
+@keyframes tabfill { to { transform: scaleX(1); } }
+.screen .views { position: relative; }
+.screen .views img { transition: opacity .6s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.screen .views img + img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.screen .views img[data-off] { opacity: 0; transform: scale(1.02); }
+.screen-bar { align-items: center; }
+.screen-bar span { margin-left: 10px; font-size: .74rem; font-weight: 500; color: var(--muted); }
+
+/* Chiffres */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 64px; }
+.stat { padding: 26px; border-radius: 24px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
+.stat b { display: block; font-family: "Inter Tight", sans-serif; font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 600; letter-spacing: -0.05em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat b small { font-size: .45em; letter-spacing: -0.02em; margin-left: 4px; color: var(--muted); font-weight: 500; }
+.stat p { margin-top: 10px; color: var(--ink-2); font-size: .92rem; }
+
+/* Téléphone */
+.mobile { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; border-radius: 36px; padding: 64px; background: linear-gradient(160deg, var(--sky) 0%, #eef2f7 100%); overflow: hidden; position: relative; }
+.mobile .sec-head p { max-width: 440px; }
+.m-list { list-style: none; padding: 0; margin-top: 26px; display: grid; gap: 14px; }
+.m-list li { display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: center; color: var(--ink-2); }
+.m-list li span { width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; background: rgba(255,255,255,.8); color: var(--sky-ink); }
+.m-list svg { width: 17px; height: 17px; }
+.m-stage { position: relative; height: 460px; }
+.m-stage::before { content: ""; position: absolute; width: 340px; height: 340px; border-radius: 50%; left: 50%; top: 50%; margin: -170px 0 0 -170px; background: rgba(255,255,255,.75); filter: blur(30px); }
+.handset { position: absolute; left: 50%; top: 10px; width: 210px; margin-left: -105px; padding: 7px; border-radius: 36px; background: var(--ink); box-shadow: 0 40px 80px -30px rgba(29,29,27,.55); animation: drift 9s ease-in-out infinite; }
+.handset img { border-radius: 29px; aspect-ratio: 390 / 844; object-fit: cover; object-position: top; }
+.notif { position: absolute; display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 10px; border-radius: 16px; background: rgba(255,255,255,.95); box-shadow: var(--shadow-lg); font-size: .82rem; white-space: nowrap; animation: drift 8s ease-in-out infinite; }
+.notif b { display: block; font-size: .86rem; }
+.notif small { color: var(--muted); }
+.n-1 { left: 0; top: 190px; animation-delay: -3s; }
+.n-2 { right: 0; bottom: 40px; animation-delay: -6s; }
+.js .mobile .notif { opacity: 0; }
+.mobile.in .notif { animation: chipin .8s cubic-bezier(.2,1.4,.4,1) both, drift 8s ease-in-out infinite; animation-delay: .6s, 1.4s; }
+.mobile.in .n-2 { animation-delay: 1s, -4s; }
+
+/* Nouveautés de la 1.4 */
+.ver-more { grid-column: 1 / -1; }
+.ver-more summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: .88rem; font-weight: 600; color: var(--sky-ink); }
+.ver-more summary::-webkit-details-marker { display: none; }
+.ver-more summary::after { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .25s; }
+.ver-more[open] summary::after { transform: rotate(-135deg) translate(-2px, 0); }
+.ver-more { interpolate-size: allow-keywords; }
+.ver-more::details-content { height: 0; overflow: hidden; transition: height .4s ease, content-visibility .4s allow-discrete; }
+.ver-more[open]::details-content { height: auto; }
+.news { list-style: none; padding: 0; margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+.news li { display: flex; gap: 10px; align-items: baseline; font-size: .92rem; color: var(--ink-2); }
+.news li::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--sky-ink); transform: translateY(-2px); }
+
+/* Bouton WhatsApp flottant */
+.wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 50; display: inline-flex; align-items: center; gap: 10px; padding: 8px; border-radius: 999px; background: var(--ink); color: #fff; text-decoration: none; box-shadow: 0 18px 40px -16px rgba(29,29,27,.6); opacity: 0; transform: translateY(16px) scale(.9); pointer-events: none; transition: opacity .35s, transform .45s cubic-bezier(.2,1.3,.4,1); }
+.wa-float.show { opacity: 1; transform: none; pointer-events: auto; }
+.wa-float span { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: #25d366; }
+.wa-float svg { width: 20px; height: 20px; }
+.wa-float em { font-style: normal; font-size: .9rem; font-weight: 600; max-width: 0; overflow: hidden; white-space: nowrap; transition: max-width .4s ease, padding .4s ease; }
+.wa-float:hover em, .wa-float:focus-visible em { max-width: 160px; padding-right: 10px; }
+
+/* Pied de page */
+.foot2 { padding-top: 72px; padding-bottom: 36px; }
+.foot-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 32px; }
+.foot-top p { margin-top: 14px; max-width: 280px; color: var(--ink-2); font-size: .92rem; }
+.foot-top h4 { margin: 0 0 12px; font-size: .86rem; font-weight: 600; }
+.foot-top ul { list-style: none; padding: 0; display: grid; gap: 8px; font-size: .92rem; }
+.foot-top a { text-decoration: none; color: var(--ink-2); }
+.foot-top a:hover { color: var(--ink); }
+.foot-bot { margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; color: var(--muted); font-size: .86rem; }
+
+@media (max-width: 960px) {
+  .stats { grid-template-columns: 1fr 1fr; }
+  .mobile { grid-template-columns: 1fr; padding: 48px 40px 0; }
+  .foot-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .tabs { display: flex; overflow-x: auto; scrollbar-width: none; max-width: 100%; margin-bottom: 18px; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { padding: 8px 13px; font-size: .82rem; }
+  .stats { gap: 10px; margin-top: 44px; }
+  .stat { padding: 20px; border-radius: 20px; }
+  .mobile { padding: 36px 20px 0; border-radius: 26px; gap: 28px; }
+  .m-stage { height: 380px; }
+  .handset { width: 170px; margin-left: -85px; border-radius: 30px; }
+  .handset img { border-radius: 24px; }
+  .notif { font-size: .76rem; }
+  .n-1 { top: 150px; }
+  .n-2 { bottom: 30px; }
+  .news { grid-template-columns: 1fr; }
+  .wa-float { right: 14px; bottom: 14px; }
+  .foot-top { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .handset, .notif, .tab i { animation: none; }
+  .js .mobile .notif { opacity: 1; }
+  .wa-float { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -383,9 +484,20 @@ section { padding: 110px 0; }
     <p class="note rv">Gratuit pendant 30 jours · Windows 10 et 11 · En francs CFA</p>
 
     <div class="showcase rv">
+      <div class="tabs" role="tablist" aria-label="Écrans du logiciel">
+        <button class="tab" role="tab" aria-selected="true" data-v="0">Tableau de bord<i></i></button>
+        <button class="tab" role="tab" aria-selected="false" data-v="1">Documents<i></i></button>
+        <button class="tab" role="tab" aria-selected="false" data-v="2">Impayés<i></i></button>
+        <button class="tab" role="tab" aria-selected="false" data-v="3">Caisse<i></i></button>
+      </div>
       <div class="screen">
-        <div class="screen-bar"><i></i><i></i><i></i></div>
-        <img src="../images/tableau-de-bord.png" width="1440" height="900" alt="Tableau de bord de Gestion Commerciale">
+        <div class="screen-bar"><i></i><i></i><i></i><span id="screen-name">Tableau de bord</span></div>
+        <div class="views">
+          <img src="../images/tableau-de-bord.png" width="1440" height="900" alt="Tableau de bord de Gestion Commerciale">
+          <img src="../images/documents.png" width="1440" height="900" alt="Liste des documents" loading="lazy" data-off>
+          <img src="../images/impayes.png" width="1440" height="900" alt="Factures impayées" loading="lazy" data-off>
+          <img src="../images/caisse.png" width="1440" height="900" alt="Écran de caisse" loading="lazy" data-off>
+        </div>
       </div>
       <div class="chip-float cf-1" aria-hidden="true">
         <span class="dot-ic ic-sage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
@@ -403,8 +515,8 @@ section { padding: 110px 0; }
   </div>
 </section>
 
-<div class="for wrap rv">
-  <p>Pensé pour les commerces de proximité et les grossistes</p>
+<div class="for wrap">
+  <p class="rv">Pensé pour les commerces de proximité et les grossistes</p>
   <div class="marq"><div class="trades">
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>Quincailleries</span>
     <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Boutiques</span>
@@ -420,6 +532,12 @@ section { padding: 110px 0; }
     <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>Grossistes</span>
     <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg>Et bien d'autres</span>
   </div></div>
+  <div class="stats">
+    <div class="stat rv"><b><span data-num="30">30</span><small>jours</small></b><p>d'essai gratuit, avec toutes les fonctions</p></div>
+    <div class="stat rv"><b><span data-num="0">0</span></b><p>connexion internet nécessaire au magasin</p></div>
+    <div class="stat rv"><b><span data-num="5">5</span></b><p>types de documents : devis, proforma, facture, livraison, avoir</p></div>
+    <div class="stat rv"><b><span data-num="4">4</span></b><p>façons d'installer : un poste, un réseau de caisses ou une base existante</p></div>
+  </div>
 </div>
 
 <section id="journee">
@@ -567,6 +685,28 @@ section { padding: 110px 0; }
   </div>
 </section>
 
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="mobile">
+      <div class="sec-head rv">
+        <span class="eyebrow" style="color:var(--sky-ink)">Application web</span>
+        <h2>Votre magasin, dans votre poche.</h2>
+        <p>Avec l'application web, le gérant suit l'activité depuis son téléphone, même loin du magasin.</p>
+        <ul class="m-list">
+          <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>Les ventes et le chiffre d'affaires du jour</li>
+          <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg></span>Les impayés, et la relance en un geste</li>
+          <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></span>Toutes les agences sur une seule base</li>
+        </ul>
+      </div>
+      <div class="m-stage" aria-hidden="true">
+        <div class="handset"><img src="../images/mobile.png" width="390" height="844" alt="" loading="lazy"></div>
+        <div class="notif n-1"><span class="dot-ic ic-sage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Paiement reçu</b><small>Agence centrale · 120 000 F</small></span></div>
+        <div class="notif n-2"><span class="dot-ic ic-rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg></span><span><b>3 factures en retard</b><small>Relancer maintenant</small></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="versions" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head rv">
@@ -596,6 +736,21 @@ section { padding: 110px 0; }
           <a class="lnk" href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/tag/v1.4.0" target="_blank" rel="noopener">Notes</a>
           <a class="btn btn-ghost btn-sm" href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.4.0/GestionCommerciale-Setup-1.4.0.exe">Télécharger · 135 Mo</a>
         </div>
+        <details class="ver-more">
+          <summary>Voir les nouveautés</summary>
+          <ul class="news">
+            <li>Factures impayées et relances par WhatsApp, SMS ou e-mail</li>
+            <li>Clôture de caisse par caissier, avec écart et rapport</li>
+            <li>Bouton « Encaisser » : vente comptant en un clic</li>
+            <li>Droits par vendeur : remise maximale, prix, suppressions</li>
+            <li>Import des articles depuis Excel ou CSV</li>
+            <li>Modules à activer selon votre activité</li>
+            <li>Dupliquer un document</li>
+            <li>Mises à jour par le réseau local, sans internet</li>
+            <li>« Reste à payer » sur la facture A4, bon de préparation</li>
+            <li>Affichage adapté aux téléphones</li>
+          </ul>
+        </details>
       </div>
     </div>
     <div class="req rv"><span>Windows 10 ou 11, 64 bits</span><span>Vos données sont conservées à la mise à jour</span><span>Aucune connexion internet requise</span></div>
@@ -633,16 +788,20 @@ section { padding: 110px 0; }
 </section>
 </main>
 
-<footer class="wrap foot">
-  <a class="brand" href="#"><span class="logo">G</span>Gestion Commerciale</a>
-  <nav>
-    <a href="#journee">Au quotidien</a>
-    <a href="#fonctions">Fonctions</a>
-    <a href="#versions">Versions</a>
-    <a href="mailto:abalodevelopper@gmail.com">abalodevelopper@gmail.com</a>
-  </nav>
-  <span>© 2026 AB-DIGICOM</span>
+<footer class="wrap foot2">
+  <div class="foot-top">
+    <div>
+      <a class="brand" href="#"><span class="logo">G</span>Gestion Commerciale</a>
+      <p>Le logiciel de gestion simple pour les commerces, même sans internet. Une solution AB-DIGICOM.</p>
+    </div>
+    <div><h4>Produit</h4><ul><li><a href="#journee">Au quotidien</a></li><li><a href="#fonctions">Fonctions</a></li><li><a href="#questions">Questions</a></li></ul></div>
+    <div><h4>Télécharger</h4><ul><li><a href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.3.0/GestionCommerciale-Setup-1.3.0.exe">Version 1.3.0</a></li><li><a href="https://github.com/chrisabalodev/gestion-commerciale-site/releases/download/v1.4.0/GestionCommerciale-Setup-1.4.0.exe">Preview 1.4.0</a></li><li><a href="https://github.com/chrisabalodev/gestion-commerciale-site/releases" target="_blank" rel="noopener">Toutes les versions</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li><a href="https://wa.me/22871576308" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="tel:+22896955044">+228 96 95 50 44</a></li><li><a href="mailto:abalodevelopper@gmail.com">abalodevelopper@gmail.com</a></li></ul></div>
+  </div>
+  <div class="foot-bot"><span>© 2026 AB-DIGICOM · Tous droits réservés</span><span>Développé par Abalo.dev</span></div>
 </footer>
+
+<a class="wa-float" href="https://wa.me/22871576308?text=Bonjour%2C%20j%27ai%20une%20question%20sur%20Gestion%20Commerciale." target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg></span><em>Une question ?</em></a>
 
 <script>
 (function () {
@@ -737,6 +896,46 @@ section { padding: 110px 0; }
   addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
   addEventListener("resize", frame);
   frame();
+
+  // Onglets des écrans : défilent seuls jusqu'au premier clic
+  var tabs = document.querySelectorAll(".tab"), views = document.querySelectorAll(".views img");
+  var label = document.getElementById("screen-name"), cur = 0, timer = null;
+  function show(i) {
+    cur = i;
+    tabs.forEach(function (t, k) { t.setAttribute("aria-selected", k === i ? "true" : "false"); });
+    views.forEach(function (v, k) { if (k === i) v.removeAttribute("data-off"); else v.setAttribute("data-off", ""); });
+    label.textContent = tabs[i].firstChild.textContent;
+  }
+  function stop() { clearInterval(timer); timer = null; document.querySelector(".tabs").classList.add("stop"); }
+  tabs.forEach(function (t, k) { t.addEventListener("click", function () { stop(); show(k); }); });
+  if (!reduce) timer = setInterval(function () { show((cur + 1) % tabs.length); }, 5000);
+  else document.querySelector(".tabs").classList.add("stop");
+
+  // Chiffres clés et section téléphone
+  if ("IntersectionObserver" in window && !reduce) {
+    var io3 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io3.unobserve(e.target);
+        if (e.target.classList.contains("mobile")) { e.target.classList.add("in"); return; }
+        var el = e.target, end = +el.getAttribute("data-num"), t0 = null;
+        if (!end) return;
+        requestAnimationFrame(function step(t) {
+          if (t0 === null) t0 = t;
+          var k = Math.min(1, (t - t0) / 1200);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3)));
+          if (k < 1) requestAnimationFrame(step);
+        });
+      });
+    }, { threshold: .4 });
+    document.querySelectorAll("[data-num], .mobile").forEach(function (el) { io3.observe(el); });
+  } else {
+    document.querySelectorAll(".mobile").forEach(function (el) { el.classList.add("in"); });
+  }
+
+  // Bouton WhatsApp après le héros
+  var wa = document.querySelector(".wa-float"), hero = document.querySelector(".hero");
+  addEventListener("scroll", function () { wa.classList.toggle("show", scrollY > hero.offsetHeight * .7); }, { passive: true });
 })();
 </script>
 </body>
